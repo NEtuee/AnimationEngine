@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AlignedAllocationPolicy.h" />
+    <ClInclude Include="AnimationBlendLayer.h" />
+    <ClInclude Include="AnimationDataPack.h" />
+    <ClInclude Include="AnimationDataRow.h" />
+    <ClInclude Include="AnimationLayerBase.h" />
+    <ClInclude Include="AnimationLoader.h" />
+    <ClInclude Include="AnimationPlayer.h" />
+    <ClInclude Include="AnimationSourceLayer.h" />
+    <ClInclude Include="AnimationState.h" />
+    <ClInclude Include="AnimationStateBase.h" />
+    <ClInclude Include="AnimationStateBlendSpace.h" />
+    <ClInclude Include="AnimationStateCondition.h" />
+    <ClInclude Include="AnimationStateLayer.h" />
+    <ClInclude Include="AnimationStateSingle.h" />
+    <ClInclude Include="AnimationStateVariable.h" />
+    <ClInclude Include="AnimationStateVariableBoolean.h" />
+    <ClInclude Include="AnimationStateConnection.h" />
+    <ClInclude Include="AnimationStateMachine.h" />
+    <ClInclude Include="AnimationStateVariableFloat.h" />
+    <ClInclude Include="BlendTree.h" />
+    <ClInclude Include="Bone.h" />
+    <ClInclude Include="BoneStructure.h" />
+    <ClInclude Include="Camera.h" />
+    <ClInclude Include="CharacterSet.h" />
+    <ClInclude Include="CharacterSetLoader.h" />
+    <ClInclude Include="D3Device.h" />
+    <ClInclude Include="DirectXDefine.h" />
+    <ClInclude Include="FrameData.h" />
+    <ClInclude Include="Graphics.h" />
+    <ClInclude Include="GroundScene.h" />
+    <ClInclude Include="GUIBase.h" />
+    <ClInclude Include="GUIScene.h" />
+    <ClInclude Include="GUI_BlendTreeViewer.h" />
+    <ClInclude Include="GUI_BoneStructureViewer.h" />
+    <ClInclude Include="GUI_CurveEditorTest.h" />
+    <ClInclude Include="GUI_FPSAndCPUCounter.h" />
+    <ClInclude Include="HalfFloat.h" />
+    <ClInclude Include="IMGUI\imconfig.h" />
+    <ClInclude Include="IMGUI\imgui.h" />
+    <ClInclude Include="IMGUI\imgui_impl_dx11.h" />
+    <ClInclude Include="IMGUI\imgui_internal.h" />
+    <ClInclude Include="IMGUI\stb_rect_pack.h" />
+    <ClInclude Include="IMGUI\stb_textedit.h" />
+    <ClInclude Include="IMGUI\stb_truetype.h" />
+    <ClInclude Include="Input.h" />
+    <ClInclude Include="LayerGhostModelScene.h" />
+    <ClInclude Include="MathEx.h" />
+    <ClInclude Include="MCube.h" />
+    <ClInclude Include="Model.h" />
+    <ClInclude Include="ModelScene.h" />
+    <ClInclude Include="MQuad.h" />
+    <ClInclude Include="MRectangle.h" />
+    <ClInclude Include="MTriangle.h" />
+    <ClInclude Include="RapidXML\rapidxml.hpp" />
+    <ClInclude Include="RapidXML\rapidxml_iterators.hpp" />
+    <ClInclude Include="RapidXML\rapidxml_print.hpp" />
+    <ClInclude Include="RapidXML\rapidxml_utils.hpp" />
+    <ClInclude Include="ResourceLoader.h" />
+    <ClInclude Include="Scene.h" />
+    <ClInclude Include="Serialize.h" />
+    <ClInclude Include="Shader.h" />
+    <ClInclude Include="SimpleColor.h" />
+    <ClInclude Include="SkeletonLoader.h" />
+    <ClInclude Include="StringEx.h" />
+    <ClInclude Include="ThreadPool.h" />
+    <ClInclude Include="Timer.h" />
+    <ClInclude Include="Transform.h" />
+    <ClInclude Include="TransformStructure.h" />
+    <ClInclude Include="Triangulation.h" />
+    <ClInclude Include="VariableBinder.h" />
+    <ClInclude Include="WindowApp.h" />
+    <ClInclude Include="XMLData.h" />
+    <ClInclude Include="XMLLoader.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="AnimationBlendLayer.cpp" />
+    <ClCompile Include="AnimationDataPack.cpp" />
+    <ClCompile Include="AnimationDataRow.cpp" />
+    <ClCompile Include="AnimationLayerBase.cpp" />
+    <ClCompile Include="AnimationLoader.cpp" />
+    <ClCompile Include="AnimationPlayer.cpp" />
+    <ClCompile Include="AnimationSourceLayer.cpp" />
+    <ClCompile Include="AnimationState.cpp" />
+    <ClCompile Include="AnimationStateBase.cpp" />
+    <ClCompile Include="AnimationStateBlendSpace.cpp" />
+    <ClCompile Include="AnimationStateCondition.cpp" />
+    <ClCompile Include="AnimationStateLayer.cpp" />
+    <ClCompile Include="AnimationStateSingle.cpp" />
+    <ClCompile Include="AnimationStateVariable.cpp" />
+    <ClCompile Include="AnimationStateVariableBoolean.cpp" />
+    <ClCompile Include="AnimationStateConnection.cpp" />
+    <ClCompile Include="AnimationStateMachine.cpp" />
+    <ClCompile Include="AnimationStateVariableFloat.cpp" />
+    <ClCompile Include="BlendTree.cpp" />
+    <ClCompile Include="Bone.cpp" />
+    <ClCompile Include="BoneStructure.cpp" />
+    <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="CharacterSet.cpp" />
+    <ClCompile Include="CharacterSetLoader.cpp" />
+    <ClCompile Include="D3Device.cpp" />
+    <ClCompile Include="FrameData.cpp" />
+    <ClCompile Include="Graphics.cpp" />
+    <ClCompile Include="GroundScene.cpp" />
+    <ClCompile Include="GUIBase.cpp" />
+    <ClCompile Include="GUIScene.cpp" />
+    <ClCompile Include="GUI_BlendTreeViewer.cpp" />
+    <ClCompile Include="GUI_BoneStructureViewer.cpp" />
+    <ClCompile Include="GUI_CurveEditorTest.cpp" />
+    <ClCompile Include="GUI_FPSAndCPUCounter.cpp" />
+    <ClCompile Include="HalfFloat.cpp" />
+    <ClCompile Include="IMGUI\imgui.cpp" />
+    <ClCompile Include="IMGUI\imgui_draw.cpp" />
+    <ClCompile Include="IMGUI\imgui_impl_dx11.cpp" />
+    <ClCompile Include="Input.cpp" />
+    <ClCompile Include="LayerGhostModelScene.cpp" />
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="MathEx.cpp" />
+    <ClCompile Include="MCube.cpp" />
+    <ClCompile Include="Model.cpp" />
+    <ClCompile Include="ModelScene.cpp" />
+    <ClCompile Include="MQuad.cpp" />
+    <ClCompile Include="MRectangle.cpp" />
+    <ClCompile Include="MTriangle.cpp" />
+    <ClCompile Include="ResourceLoader.cpp" />
+    <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="Serialize.cpp" />
+    <ClCompile Include="Shader.cpp" />
+    <ClCompile Include="SkeletonLoader.cpp" />
+    <ClCompile Include="StringEx.cpp" />
+    <ClCompile Include="ThreadPool.cpp" />
+    <ClCompile Include="Timer.cpp" />
+    <ClCompile Include="Transform.cpp" />
+    <ClCompile Include="TransformStructure.cpp" />
+    <ClCompile Include="Triangulation.cpp" />
+    <ClCompile Include="VariableBinder.cpp" />
+    <ClCompile Include="WindowApp.cpp" />
+    <ClCompile Include="XMLData.cpp" />
+    <ClCompile Include="XMLLoader.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Color.ps" />
+    <None Include="Color.vs" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{b0f4a456-ce77-4ef7-a559-a9887f4b3753}</ProjectGuid>
+    <RootNamespace>VulkanSetup</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>DirectXSetup</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>&amp;(SolutionDir)VulkanSetup\RapidXML;&amp;(SolutionDir)VulkanSetup\IMGUI</IncludePath>
+    <ReferencePath>C:\VulkanSDK\1.2.182.0\Lib;$(ReferencePath)</ReferencePath>
+    <ExternalIncludePath>&amp;(SolutionDir)VulkanSetup\IMGUI;$(ExternalIncludePath)</ExternalIncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <IncludePath>&amp;(SolutionDir)VulkanSetup\RapidXML;&amp;(SolutionDir)VulkanSetup\IMGUI</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>&amp;(SolutionDir)VulkanSetup\RapidXML;&amp;(SolutionDir)VulkanSetup\IMGUI</IncludePath>
+    <ExternalIncludePath>&amp;(SolutionDir)VulkanSetup\IMGUI;$(ExternalIncludePath)</ExternalIncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <IncludePath>&amp;(SolutionDir)VulkanSetup\RapidXML;&amp;(SolutionDir)VulkanSetup\IMGUI</IncludePath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <ProgramDataBaseFileName>$(TEMP)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>winmm.lib;pdh.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ProgramDatabaseFile>$(OutDir)$(TargetName).pdb</ProgramDatabaseFile>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <ProgramDataBaseFileName>$(TEMP)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>winmm.lib;pdh.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ProgramDatabaseFile>$(OutDir)$(TargetName).pdb</ProgramDatabaseFile>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <ProgramDataBaseFileName>$(TEMP)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>winmm.lib;pdh.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ProgramDatabaseFile>$(OutDir)$(TargetName).pdb</ProgramDatabaseFile>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <ProgramDataBaseFileName>$(TEMP)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>winmm.lib;pdh.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ProgramDatabaseFile>$(OutDir)$(TargetName).pdb</ProgramDatabaseFile>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

@@ -1,0 +1,638 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="소스 파일">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="헤더 파일">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="리소스 파일">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="IMGUI">
+      <UniqueIdentifier>{0ae28cd9-f3ed-4985-b63a-d0fd42e31356}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Scene">
+      <UniqueIdentifier>{6a39705b-e0d3-4e6c-bd3c-15fb704c7e2f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Transform">
+      <UniqueIdentifier>{f53b5768-02e5-48cb-9bc5-221dd6dfef36}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Scene\ModelScene">
+      <UniqueIdentifier>{254f15d8-4bd7-4ae5-973f-0321f95ddb64}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Scene\GUIScene">
+      <UniqueIdentifier>{9645125e-c899-4930-ae45-dc103cce8635}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Scene\GroundScene">
+      <UniqueIdentifier>{0e2a9132-a1c4-45d3-b42c-a71181fe48f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Animation">
+      <UniqueIdentifier>{d8547469-bf34-46de-878a-a374c2bc71ba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\System">
+      <UniqueIdentifier>{69ba5aa9-3f2a-4a86-830e-11061a86cd12}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\System\Thread">
+      <UniqueIdentifier>{a9c9bf7b-ee8c-4cf9-8dfd-cf2fe04ba8da}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\System\Rendering">
+      <UniqueIdentifier>{31e4b7bf-21fb-40a4-aada-f545e857a36f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\System\Rendering\Shaders">
+      <UniqueIdentifier>{16934d86-6aed-4de6-8328-3757f5a6a9d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\System\Rendering\Device">
+      <UniqueIdentifier>{6b727168-b93b-4a16-8384-4d219c7207aa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\System\Rendering\Graphics">
+      <UniqueIdentifier>{ace5f145-80bb-490b-9aaa-e5074bdb30ff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\System\Rendering\GUI">
+      <UniqueIdentifier>{b859db75-7aec-408b-9c8e-7eb99a1e3a99}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\System\Rendering\GUI\FPSAndCPU">
+      <UniqueIdentifier>{df584717-8d88-4665-af41-09a906d1a170}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\System\Rendering\GUI\BoneStructureViewer">
+      <UniqueIdentifier>{277b64d1-a9ba-4a9b-bb4a-334dd2c024c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\System\Rendering\Camera">
+      <UniqueIdentifier>{e7f0b21a-bd9d-44e4-8da4-08a85fe3d552}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\System\Rendering\Model">
+      <UniqueIdentifier>{e9bb000a-7a01-44b2-9428-7135976dc2ff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\System\Rendering\Model\Triangle">
+      <UniqueIdentifier>{9b7ca906-4694-4c92-95e6-3d0778490797}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\System\Rendering\Model\Rectangle">
+      <UniqueIdentifier>{ebc6d401-14fb-4448-bd3a-5814856f611a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\System\Rendering\Model\Quad">
+      <UniqueIdentifier>{0846fb9a-9afb-424b-ba22-bf77c6a867e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\System\Rendering\Model\Cube">
+      <UniqueIdentifier>{0221bf0a-3079-4743-b0f3-c8af3581b192}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\System\FileIO">
+      <UniqueIdentifier>{657fd9fd-f10a-4ac1-b1f3-5260038e9a9b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\System\FileIO\XML">
+      <UniqueIdentifier>{0c22b089-74b3-4c3e-830c-3feac55a4cc8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\System\FileIO\Skeleton">
+      <UniqueIdentifier>{b9d6097c-5ace-4897-8366-51f22679141a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\System\FileIO\Animation">
+      <UniqueIdentifier>{83e0bca2-ad74-455b-a982-55d54cf636fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\System\FileIO\Serialize">
+      <UniqueIdentifier>{d737151f-605e-4c10-8973-a84fd4c1088b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\System\Input">
+      <UniqueIdentifier>{4e8e71e8-39e7-4cbd-87af-d1044f19c048}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\System\Timer">
+      <UniqueIdentifier>{fb328ac0-76f1-4d02-9341-a377de097d5a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\System\WindowApp">
+      <UniqueIdentifier>{05cb9d59-7c59-48cc-ba21-c768873cff79}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Animation\AnimationDataPack">
+      <UniqueIdentifier>{d570650d-f65d-4cea-b540-dda2d3c7cd18}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Animation\AnimationDataPack\AnimationData">
+      <UniqueIdentifier>{b3dfc0cc-4aed-494e-b6ff-318217ce4baa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Animation\AnimationStateMachine">
+      <UniqueIdentifier>{2035fa5a-fa43-460f-8023-d6b0ef8b906f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Animation\AnimationStateMachine\AnimationStateCondition">
+      <UniqueIdentifier>{95f51cda-9ed1-453e-acd5-151cd7722536}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Animation\AnimationStateMachine\AnimationStateConnection">
+      <UniqueIdentifier>{23e2518c-0d03-4e8f-a704-3bcb85b1796e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Animation\AnimationStateMachine\AnimationStateVariable">
+      <UniqueIdentifier>{15d0734c-7d0a-4e73-b136-df49a2c97ce3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Animation\AnimationStateMachine\AnimationStateVariable\Boolean">
+      <UniqueIdentifier>{7fb1c1b2-e089-47ec-8d17-a63f04305f0f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Animation\AnimationStateMachine\AnimationStateVariable\Integer">
+      <UniqueIdentifier>{8ad79a78-0c33-48ed-b545-5fa8633fc475}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Animation\AnimationStateMachine\AnimationStateVariable\Float">
+      <UniqueIdentifier>{37c87651-c932-4379-b3fc-7e6e97aecd73}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Animation\AnimationStateMachine\AnimationState">
+      <UniqueIdentifier>{12bf6016-b62c-4a86-8c77-820fc69bc35a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\BoneStructure">
+      <UniqueIdentifier>{db8f5c40-57cb-4fb1-a79b-557175cfb9e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Utility">
+      <UniqueIdentifier>{a039b0f6-61ff-449b-8247-4f0d84a53a83}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Utility\StringEx">
+      <UniqueIdentifier>{7166a50a-4fd3-4b1f-9eed-cfb21407857a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\System\FileIO\XML\Loader">
+      <UniqueIdentifier>{ce7baf6d-ed04-468f-971c-b231bca66206}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="RapidXML">
+      <UniqueIdentifier>{d8b76c69-c53a-482c-adda-36d419e3bf22}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Animation\CharacterSet">
+      <UniqueIdentifier>{1d1d4351-3c44-4e1b-a0cb-72b4ebd2e624}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Animation\BlendTree">
+      <UniqueIdentifier>{d9a0e12a-4bad-4e6b-a6dc-c5099d0daeae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\System\FileIO\CharacterSet">
+      <UniqueIdentifier>{35b09331-fc62-46e4-bc37-6023c60b4783}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Animation\AnimationDataPack\AnimationData\FrameData">
+      <UniqueIdentifier>{5fcb66f1-e07c-4af8-a02a-e96b10c80618}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Utility\VariableBinder">
+      <UniqueIdentifier>{6adba07b-8bdc-4428-be0a-37a5d029f194}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Animation\AnimationEvent">
+      <UniqueIdentifier>{af870fd2-b8c2-4cb5-9158-172b93521053}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Animation\AnimationLayer">
+      <UniqueIdentifier>{8614dc13-7a31-4267-8481-9bd195bd3c70}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Animation\AnimationLayer\AnimationSourceLayer">
+      <UniqueIdentifier>{3b86e187-78e7-47d8-ac9a-0abc9310cfc2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Animation\AnimationLayer\AnimationBlendLayer">
+      <UniqueIdentifier>{b748e7df-e394-4b13-83ef-86fa18a8de81}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\System\Rendering\GUI\BlendTreeViewer">
+      <UniqueIdentifier>{06ec0c26-a077-4fa6-89c0-91a31ca4d6b1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Utility\MathEx">
+      <UniqueIdentifier>{4e23f4a2-66b3-4057-bd98-e214b8311d7e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Animation\AnimationStateMachine\AnimationStateLayer_OLD">
+      <UniqueIdentifier>{803dbc1e-a07f-4523-8b87-32bf1d1e60ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\BoneStructure\Bone_OLD">
+      <UniqueIdentifier>{eae1126f-fd5c-4f13-8d38-2cd1415076ec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Animation\AnimationStateMachine\AnimationState\AnimationStateSingle">
+      <UniqueIdentifier>{5c03f602-e926-47a8-a080-be2218c36ae3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Animation\AnimationStateMachine\AnimationState\AnimationStateBlendSpace">
+      <UniqueIdentifier>{464e48a6-27ee-4443-ae49-05d6afdeaa5e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Algorithm">
+      <UniqueIdentifier>{32d7c696-4527-4fbf-a07b-e97ea38a0799}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Algorithm\Triangulation">
+      <UniqueIdentifier>{98e760fe-63e6-44d8-9930-203a8fff5e6c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Animation\AnimationPlayer_OLD">
+      <UniqueIdentifier>{b7a5448a-2aba-4776-a1b2-ac1c4f8abd93}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\System\FileIO\ResourceLoader">
+      <UniqueIdentifier>{a354aeaa-7651-401f-a9eb-175ebed966b4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\System\Rendering\GUI\CurveEditorTest">
+      <UniqueIdentifier>{ac3b6bcc-8fe1-4ab3-bdcb-298ab3c6ff02}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Algorithm\HalfFloat">
+      <UniqueIdentifier>{b7e21a07-9cb0-4101-af51-1ab3dcc5e6e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Scene\ModelScene\Ghost">
+      <UniqueIdentifier>{2ea74a35-03e2-458a-ab63-27b7eb663496}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Graphics.h">
+      <Filter>소스 파일\System\Rendering\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectXDefine.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="WindowApp.h">
+      <Filter>소스 파일\System\WindowApp</Filter>
+    </ClInclude>
+    <ClInclude Include="D3Device.h">
+      <Filter>소스 파일\System\Rendering\Device</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader.h">
+      <Filter>소스 파일\System\Rendering\Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="Model.h">
+      <Filter>소스 파일\System\Rendering\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>소스 파일\System\Rendering\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Timer.h">
+      <Filter>소스 파일\System\Timer</Filter>
+    </ClInclude>
+    <ClInclude Include="IMGUI\imgui_impl_dx11.h">
+      <Filter>IMGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="IMGUI\imgui_internal.h">
+      <Filter>IMGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="IMGUI\stb_rect_pack.h">
+      <Filter>IMGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="IMGUI\stb_textedit.h">
+      <Filter>IMGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="IMGUI\stb_truetype.h">
+      <Filter>IMGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="IMGUI\imconfig.h">
+      <Filter>IMGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="IMGUI\imgui.h">
+      <Filter>IMGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="GUIBase.h">
+      <Filter>소스 파일\System\Rendering\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="MTriangle.h">
+      <Filter>소스 파일\System\Rendering\Model\Triangle</Filter>
+    </ClInclude>
+    <ClInclude Include="MRectangle.h">
+      <Filter>소스 파일\System\Rendering\Model\Rectangle</Filter>
+    </ClInclude>
+    <ClInclude Include="MQuad.h">
+      <Filter>소스 파일\System\Rendering\Model\Quad</Filter>
+    </ClInclude>
+    <ClInclude Include="Transform.h">
+      <Filter>소스 파일\Transform</Filter>
+    </ClInclude>
+    <ClInclude Include="TransformStructure.h">
+      <Filter>소스 파일\Transform</Filter>
+    </ClInclude>
+    <ClInclude Include="MCube.h">
+      <Filter>소스 파일\System\Rendering\Model\Cube</Filter>
+    </ClInclude>
+    <ClInclude Include="Bone.h">
+      <Filter>소스 파일\BoneStructure\Bone_OLD</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>소스 파일\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelScene.h">
+      <Filter>소스 파일\Scene\ModelScene</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI_FPSAndCPUCounter.h">
+      <Filter>소스 파일\System\Rendering\GUI\FPSAndCPU</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI_BoneStructureViewer.h">
+      <Filter>소스 파일\System\Rendering\GUI\BoneStructureViewer</Filter>
+    </ClInclude>
+    <ClInclude Include="GUIScene.h">
+      <Filter>소스 파일\Scene\GUIScene</Filter>
+    </ClInclude>
+    <ClInclude Include="GroundScene.h">
+      <Filter>소스 파일\Scene\GroundScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Input.h">
+      <Filter>소스 파일\System\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="StringEx.h">
+      <Filter>소스 파일\Utility\StringEx</Filter>
+    </ClInclude>
+    <ClInclude Include="SkeletonLoader.h">
+      <Filter>소스 파일\System\FileIO\Skeleton</Filter>
+    </ClInclude>
+    <ClInclude Include="Serialize.h">
+      <Filter>소스 파일\System\FileIO\Serialize</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationLoader.h">
+      <Filter>소스 파일\System\FileIO\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationDataRow.h">
+      <Filter>소스 파일\Animation\AnimationDataPack\AnimationData</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationPlayer.h">
+      <Filter>소스 파일\Animation\AnimationPlayer_OLD</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationStateVariable.h">
+      <Filter>소스 파일\Animation\AnimationStateMachine\AnimationStateVariable</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationStateMachine.h">
+      <Filter>소스 파일\Animation\AnimationStateMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationStateVariableBoolean.h">
+      <Filter>소스 파일\Animation\AnimationStateMachine\AnimationStateVariable\Boolean</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationDataPack.h">
+      <Filter>소스 파일\Animation\AnimationDataPack</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationStateConnection.h">
+      <Filter>소스 파일\Animation\AnimationStateMachine\AnimationStateConnection</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationStateCondition.h">
+      <Filter>소스 파일\Animation\AnimationStateMachine\AnimationStateCondition</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationState.h">
+      <Filter>소스 파일\Animation\AnimationStateMachine\AnimationState</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourceLoader.h">
+      <Filter>소스 파일\System\FileIO\ResourceLoader</Filter>
+    </ClInclude>
+    <ClInclude Include="BoneStructure.h">
+      <Filter>소스 파일\BoneStructure</Filter>
+    </ClInclude>
+    <ClInclude Include="SimpleColor.h">
+      <Filter>소스 파일\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="AlignedAllocationPolicy.h">
+      <Filter>소스 파일\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="ThreadPool.h">
+      <Filter>소스 파일\System\Thread</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationStateLayer.h">
+      <Filter>소스 파일\Animation\AnimationStateMachine\AnimationStateLayer_OLD</Filter>
+    </ClInclude>
+    <ClInclude Include="XMLData.h">
+      <Filter>소스 파일\System\FileIO\XML\Loader</Filter>
+    </ClInclude>
+    <ClInclude Include="XMLLoader.h">
+      <Filter>소스 파일\System\FileIO\XML\Loader</Filter>
+    </ClInclude>
+    <ClInclude Include="RapidXML\rapidxml_print.hpp">
+      <Filter>RapidXML</Filter>
+    </ClInclude>
+    <ClInclude Include="RapidXML\rapidxml_utils.hpp">
+      <Filter>RapidXML</Filter>
+    </ClInclude>
+    <ClInclude Include="RapidXML\rapidxml.hpp">
+      <Filter>RapidXML</Filter>
+    </ClInclude>
+    <ClInclude Include="RapidXML\rapidxml_iterators.hpp">
+      <Filter>RapidXML</Filter>
+    </ClInclude>
+    <ClInclude Include="CharacterSet.h">
+      <Filter>소스 파일\Animation\CharacterSet</Filter>
+    </ClInclude>
+    <ClInclude Include="BlendTree.h">
+      <Filter>소스 파일\Animation\BlendTree</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationStateVariableFloat.h">
+      <Filter>소스 파일\Animation\AnimationStateMachine\AnimationStateVariable\Float</Filter>
+    </ClInclude>
+    <ClInclude Include="CharacterSetLoader.h">
+      <Filter>소스 파일\System\FileIO\CharacterSet</Filter>
+    </ClInclude>
+    <ClInclude Include="FrameData.h">
+      <Filter>소스 파일\Animation\AnimationDataPack\AnimationData\FrameData</Filter>
+    </ClInclude>
+    <ClInclude Include="VariableBinder.h">
+      <Filter>소스 파일\Utility\VariableBinder</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationLayerBase.h">
+      <Filter>소스 파일\Animation\AnimationLayer</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationSourceLayer.h">
+      <Filter>소스 파일\Animation\AnimationLayer\AnimationSourceLayer</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationBlendLayer.h">
+      <Filter>소스 파일\Animation\AnimationLayer\AnimationBlendLayer</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI_BlendTreeViewer.h">
+      <Filter>소스 파일\System\Rendering\GUI\BlendTreeViewer</Filter>
+    </ClInclude>
+    <ClInclude Include="MathEx.h">
+      <Filter>소스 파일\Utility\MathEx</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationStateSingle.h">
+      <Filter>소스 파일\Animation\AnimationStateMachine\AnimationState\AnimationStateSingle</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationStateBlendSpace.h">
+      <Filter>소스 파일\Animation\AnimationStateMachine\AnimationState\AnimationStateBlendSpace</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationStateBase.h">
+      <Filter>소스 파일\Animation\AnimationStateMachine\AnimationState</Filter>
+    </ClInclude>
+    <ClInclude Include="Triangulation.h">
+      <Filter>소스 파일\Algorithm\Triangulation</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI_CurveEditorTest.h">
+      <Filter>소스 파일\System\Rendering\GUI\CurveEditorTest</Filter>
+    </ClInclude>
+    <ClInclude Include="HalfFloat.h">
+      <Filter>소스 파일\Algorithm\HalfFloat</Filter>
+    </ClInclude>
+    <ClInclude Include="LayerGhostModelScene.h">
+      <Filter>소스 파일\Scene\ModelScene\Ghost</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Main.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics.cpp">
+      <Filter>소스 파일\System\Rendering\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="WindowApp.cpp">
+      <Filter>소스 파일\System\WindowApp</Filter>
+    </ClCompile>
+    <ClCompile Include="D3Device.cpp">
+      <Filter>소스 파일\System\Rendering\Device</Filter>
+    </ClCompile>
+    <ClCompile Include="Shader.cpp">
+      <Filter>소스 파일\System\Rendering\Shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="Model.cpp">
+      <Filter>소스 파일\System\Rendering\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>소스 파일\System\Rendering\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Timer.cpp">
+      <Filter>소스 파일\System\Timer</Filter>
+    </ClCompile>
+    <ClCompile Include="IMGUI\imgui_impl_dx11.cpp">
+      <Filter>IMGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="IMGUI\imgui.cpp">
+      <Filter>IMGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="IMGUI\imgui_draw.cpp">
+      <Filter>IMGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="GUIBase.cpp">
+      <Filter>소스 파일\System\Rendering\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="MTriangle.cpp">
+      <Filter>소스 파일\System\Rendering\Model\Triangle</Filter>
+    </ClCompile>
+    <ClCompile Include="MRectangle.cpp">
+      <Filter>소스 파일\System\Rendering\Model\Rectangle</Filter>
+    </ClCompile>
+    <ClCompile Include="MQuad.cpp">
+      <Filter>소스 파일\System\Rendering\Model\Quad</Filter>
+    </ClCompile>
+    <ClCompile Include="Transform.cpp">
+      <Filter>소스 파일\Transform</Filter>
+    </ClCompile>
+    <ClCompile Include="TransformStructure.cpp">
+      <Filter>소스 파일\Transform</Filter>
+    </ClCompile>
+    <ClCompile Include="MCube.cpp">
+      <Filter>소스 파일\System\Rendering\Model\Cube</Filter>
+    </ClCompile>
+    <ClCompile Include="Bone.cpp">
+      <Filter>소스 파일\BoneStructure\Bone_OLD</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>소스 파일\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelScene.cpp">
+      <Filter>소스 파일\Scene\ModelScene</Filter>
+    </ClCompile>
+    <ClCompile Include="GUI_FPSAndCPUCounter.cpp">
+      <Filter>소스 파일\System\Rendering\GUI\FPSAndCPU</Filter>
+    </ClCompile>
+    <ClCompile Include="GUI_BoneStructureViewer.cpp">
+      <Filter>소스 파일\System\Rendering\GUI\BoneStructureViewer</Filter>
+    </ClCompile>
+    <ClCompile Include="GUIScene.cpp">
+      <Filter>소스 파일\Scene\GUIScene</Filter>
+    </ClCompile>
+    <ClCompile Include="GroundScene.cpp">
+      <Filter>소스 파일\Scene\GroundScene</Filter>
+    </ClCompile>
+    <ClCompile Include="Input.cpp">
+      <Filter>소스 파일\System\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="StringEx.cpp">
+      <Filter>소스 파일\Utility\StringEx</Filter>
+    </ClCompile>
+    <ClCompile Include="SkeletonLoader.cpp">
+      <Filter>소스 파일\System\FileIO\Skeleton</Filter>
+    </ClCompile>
+    <ClCompile Include="Serialize.cpp">
+      <Filter>소스 파일\System\FileIO\Serialize</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationLoader.cpp">
+      <Filter>소스 파일\System\FileIO\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationDataRow.cpp">
+      <Filter>소스 파일\Animation\AnimationDataPack\AnimationData</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationPlayer.cpp">
+      <Filter>소스 파일\Animation\AnimationPlayer_OLD</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationState.cpp">
+      <Filter>소스 파일\Animation\AnimationStateMachine\AnimationState</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationStateVariable.cpp">
+      <Filter>소스 파일\Animation\AnimationStateMachine\AnimationStateVariable</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationStateMachine.cpp">
+      <Filter>소스 파일\Animation\AnimationStateMachine</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationStateVariableBoolean.cpp">
+      <Filter>소스 파일\Animation\AnimationStateMachine\AnimationStateVariable\Boolean</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationDataPack.cpp">
+      <Filter>소스 파일\Animation\AnimationDataPack</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationStateConnection.cpp">
+      <Filter>소스 파일\Animation\AnimationStateMachine\AnimationStateConnection</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationStateCondition.cpp">
+      <Filter>소스 파일\Animation\AnimationStateMachine\AnimationStateCondition</Filter>
+    </ClCompile>
+    <ClCompile Include="ResourceLoader.cpp">
+      <Filter>소스 파일\System\FileIO\ResourceLoader</Filter>
+    </ClCompile>
+    <ClCompile Include="BoneStructure.cpp">
+      <Filter>소스 파일\BoneStructure</Filter>
+    </ClCompile>
+    <ClCompile Include="ThreadPool.cpp">
+      <Filter>소스 파일\System\Thread</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationStateLayer.cpp">
+      <Filter>소스 파일\Animation\AnimationStateMachine\AnimationStateLayer_OLD</Filter>
+    </ClCompile>
+    <ClCompile Include="XMLData.cpp">
+      <Filter>소스 파일\System\FileIO\XML\Loader</Filter>
+    </ClCompile>
+    <ClCompile Include="XMLLoader.cpp">
+      <Filter>소스 파일\System\FileIO\XML\Loader</Filter>
+    </ClCompile>
+    <ClCompile Include="CharacterSet.cpp">
+      <Filter>소스 파일\Animation\CharacterSet</Filter>
+    </ClCompile>
+    <ClCompile Include="BlendTree.cpp">
+      <Filter>소스 파일\Animation\BlendTree</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationStateVariableFloat.cpp">
+      <Filter>소스 파일\Animation\AnimationStateMachine\AnimationStateVariable\Float</Filter>
+    </ClCompile>
+    <ClCompile Include="CharacterSetLoader.cpp">
+      <Filter>소스 파일\System\FileIO\CharacterSet</Filter>
+    </ClCompile>
+    <ClCompile Include="FrameData.cpp">
+      <Filter>소스 파일\Animation\AnimationDataPack\AnimationData\FrameData</Filter>
+    </ClCompile>
+    <ClCompile Include="VariableBinder.cpp">
+      <Filter>소스 파일\Utility\VariableBinder</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationLayerBase.cpp">
+      <Filter>소스 파일\Animation\AnimationLayer</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationSourceLayer.cpp">
+      <Filter>소스 파일\Animation\AnimationLayer\AnimationSourceLayer</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationBlendLayer.cpp">
+      <Filter>소스 파일\Animation\AnimationLayer\AnimationBlendLayer</Filter>
+    </ClCompile>
+    <ClCompile Include="GUI_BlendTreeViewer.cpp">
+      <Filter>소스 파일\System\Rendering\GUI\BlendTreeViewer</Filter>
+    </ClCompile>
+    <ClCompile Include="MathEx.cpp">
+      <Filter>소스 파일\Utility\MathEx</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationStateSingle.cpp">
+      <Filter>소스 파일\Animation\AnimationStateMachine\AnimationState\AnimationStateSingle</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationStateBlendSpace.cpp">
+      <Filter>소스 파일\Animation\AnimationStateMachine\AnimationState\AnimationStateBlendSpace</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationStateBase.cpp">
+      <Filter>소스 파일\Animation\AnimationStateMachine\AnimationState</Filter>
+    </ClCompile>
+    <ClCompile Include="Triangulation.cpp">
+      <Filter>소스 파일\Algorithm\Triangulation</Filter>
+    </ClCompile>
+    <ClCompile Include="GUI_CurveEditorTest.cpp">
+      <Filter>소스 파일\System\Rendering\GUI\CurveEditorTest</Filter>
+    </ClCompile>
+    <ClCompile Include="HalfFloat.cpp">
+      <Filter>소스 파일\Algorithm\HalfFloat</Filter>
+    </ClCompile>
+    <ClCompile Include="LayerGhostModelScene.cpp">
+      <Filter>소스 파일\Scene\ModelScene\Ghost</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Color.ps">
+      <Filter>소스 파일\System\Rendering\Shaders</Filter>
+    </None>
+    <None Include="Color.vs">
+      <Filter>소스 파일\System\Rendering\Shaders</Filter>
+    </None>
+  </ItemGroup>
+</Project>

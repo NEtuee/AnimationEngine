@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="소스 파일">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="헤더 파일">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="리소스 파일">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="소스 파일\MainProject">
+      <UniqueIdentifier>{1a243c04-8bb6-4582-9f6d-157b6d9e9f13}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\MainProject\Xml">
+      <UniqueIdentifier>{27cbab11-51d9-440e-b8dc-8de6e65c22f6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\MainProject\StringEx">
+      <UniqueIdentifier>{a4924f85-77c3-4305-9795-9c7573399254}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\MainProject\Transform">
+      <UniqueIdentifier>{d83eb64a-e940-4fad-bca1-eb054ed577ed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\MainProject\Serialize">
+      <UniqueIdentifier>{7a90b0fb-6cb8-41e3-b130-3e91806abc6e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\MainProject\Animation">
+      <UniqueIdentifier>{a9b1776b-f901-4659-829a-757a1a64130c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Main.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="..\VulkanSetup\AnimationLoader.cpp">
+      <Filter>소스 파일\MainProject\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\VulkanSetup\AnimationDataRow.cpp">
+      <Filter>소스 파일\MainProject\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\VulkanSetup\XMLData.cpp">
+      <Filter>소스 파일\MainProject\Xml</Filter>
+    </ClCompile>
+    <ClCompile Include="..\VulkanSetup\XMLLoader.cpp">
+      <Filter>소스 파일\MainProject\Xml</Filter>
+    </ClCompile>
+    <ClCompile Include="..\VulkanSetup\Serialize.cpp">
+      <Filter>소스 파일\MainProject\Serialize</Filter>
+    </ClCompile>
+    <ClCompile Include="..\VulkanSetup\Transform.cpp">
+      <Filter>소스 파일\MainProject\Transform</Filter>
+    </ClCompile>
+    <ClCompile Include="..\VulkanSetup\TransformStructure.cpp">
+      <Filter>소스 파일\MainProject\Transform</Filter>
+    </ClCompile>
+    <ClCompile Include="..\VulkanSetup\StringEx.cpp">
+      <Filter>소스 파일\MainProject\StringEx</Filter>
+    </ClCompile>
+    <ClCompile Include="..\VulkanSetup\AnimationDataPack.cpp">
+      <Filter>소스 파일\MainProject\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\VulkanSetup\FrameData.cpp">
+      <Filter>소스 파일\MainProject\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\VulkanSetup\MathEx.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="..\VulkanSetup\HalfFloat.cpp">
+      <Filter>소스 파일\MainProject</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\VulkanSetup\AnimationDataRow.h">
+      <Filter>소스 파일\MainProject\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\VulkanSetup\AnimationLoader.h">
+      <Filter>소스 파일\MainProject\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\VulkanSetup\XMLData.h">
+      <Filter>소스 파일\MainProject\Xml</Filter>
+    </ClInclude>
+    <ClInclude Include="..\VulkanSetup\XMLLoader.h">
+      <Filter>소스 파일\MainProject\Xml</Filter>
+    </ClInclude>
+    <ClInclude Include="..\VulkanSetup\Serialize.h">
+      <Filter>소스 파일\MainProject\Serialize</Filter>
+    </ClInclude>
+    <ClInclude Include="..\VulkanSetup\Transform.h">
+      <Filter>소스 파일\MainProject\Transform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\VulkanSetup\TransformStructure.h">
+      <Filter>소스 파일\MainProject\Transform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\VulkanSetup\StringEx.h">
+      <Filter>소스 파일\MainProject\StringEx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\VulkanSetup\DirectXDefine.h">
+      <Filter>소스 파일\MainProject</Filter>
+    </ClInclude>
+    <ClInclude Include="..\VulkanSetup\AnimationDataPack.h">
+      <Filter>소스 파일\MainProject\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\VulkanSetup\FrameData.h">
+      <Filter>소스 파일\MainProject\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\VulkanSetup\MathEx.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="..\VulkanSetup\HalfFloat.h">
+      <Filter>소스 파일\MainProject</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
