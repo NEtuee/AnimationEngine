@@ -31,6 +31,9 @@
     <Filter Include="소스 파일\MainProject\Animation">
       <UniqueIdentifier>{a9b1776b-f901-4659-829a-757a1a64130c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\FBXLoader">
+      <UniqueIdentifier>{a11aa367-a602-4a11-96ad-b8e6628bff44}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -72,6 +75,12 @@
     <ClCompile Include="..\VulkanSetup\HalfFloat.cpp">
       <Filter>소스 파일\MainProject</Filter>
     </ClCompile>
+    <ClCompile Include="FBXLoader.cpp">
+      <Filter>소스 파일\FBXLoader</Filter>
+    </ClCompile>
+    <ClCompile Include="..\VulkanSetup\BoneStructure.cpp">
+      <Filter>소스 파일\MainProject</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\VulkanSetup\AnimationDataRow.h">
@@ -111,6 +120,12 @@
       <Filter>소스 파일</Filter>
     </ClInclude>
     <ClInclude Include="..\VulkanSetup\HalfFloat.h">
+      <Filter>소스 파일\MainProject</Filter>
+    </ClInclude>
+    <ClInclude Include="FBXLoader.h">
+      <Filter>소스 파일\FBXLoader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\VulkanSetup\BoneStructure.h">
       <Filter>소스 파일\MainProject</Filter>
     </ClInclude>
   </ItemGroup>

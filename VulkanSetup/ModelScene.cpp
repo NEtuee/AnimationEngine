@@ -16,7 +16,6 @@
 #include "CharacterSetLoader.h"
 #include "LayerGhostModelScene.h"
 
-#include <imgui.h>
 #include <filesystem>
 
 ModelScene::ModelScene()
@@ -59,16 +58,16 @@ void ModelScene::createScene(Graphics* graphics)
 	double result;
 	start = clock();
 
-	for (const auto& file : std::filesystem::directory_iterator("Resource/"))
-	{
-		if (file.path().extension().compare(".dat") == 0)
-		{
-			ResourceLoader::getInstance()->preloadAnimation(file.path().string());
-		}
-	}
+	//for (const auto& file : std::filesystem::directory_iterator("Resource/"))
+	//{
+	//	if (file.path().extension().compare(".dat") == 0)
+	//	{
+	//		ResourceLoader::getInstance()->preloadAnimation(file.path().string());
+	//	}
+	//}
 
 
-	while (!ResourceLoader::getInstance()->jobDone());
+	//while (!ResourceLoader::getInstance()->jobDone());
 
 
 	end = clock() - start;

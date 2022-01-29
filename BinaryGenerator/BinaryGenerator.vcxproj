@@ -72,19 +72,24 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>&amp;(SolutionDir)VulkanSetup\RapidXML;&amp;(SolutionDir)VulkanSetup\IMGUI</IncludePath>
+    <IncludePath>&amp;(SolutionDir)VulkanSetup\RapidXML;&amp;(SolutionDir)VulkanSetup\IMGUI;C:\Program Files\Autodesk\FBX\FBX SDK\2019.0\include</IncludePath>
+    <ReferencePath>C:\Program Files\Autodesk\FBX\FBX SDK\2019.0\lib\vs2015\x86\debug;$(ReferencePath)</ReferencePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>&amp;(SolutionDir)VulkanSetup\RapidXML;&amp;(SolutionDir)VulkanSetup\IMGUI</IncludePath>
+    <IncludePath>&amp;(SolutionDir)VulkanSetup\RapidXML;&amp;(SolutionDir)VulkanSetup\IMGUI;C:\Program Files\Autodesk\FBX\FBX SDK\2019.0\include</IncludePath>
+    <ReferencePath>C:\Program Files\Autodesk\FBX\FBX SDK\2019.0\lib\vs2015\x86\release;$(ReferencePath)</ReferencePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>&amp;(SolutionDir)VulkanSetup\RapidXML;&amp;(SolutionDir)VulkanSetup\IMGUI</IncludePath>
+    <IncludePath>&amp;(SolutionDir)VulkanSetup\RapidXML;&amp;(SolutionDir)VulkanSetup\IMGUI;C:\Users\LeeUmin\Desktop\assimp-5.2.0\include</IncludePath>
+    <ReferencePath>C:\Users\LeeUmin\Desktop\assimp-5.2.0\lib\Release;$(ReferencePath)</ReferencePath>
+    <LibraryPath>C:\Users\LeeUmin\Desktop\assimp-5.2.0\lib\Release;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>&amp;(SolutionDir)VulkanSetup\RapidXML;&amp;(SolutionDir)VulkanSetup\IMGUI</IncludePath>
+    <IncludePath>&amp;(SolutionDir)VulkanSetup\RapidXML;&amp;(SolutionDir)VulkanSetup\IMGUI;C:\Program Files\Autodesk\FBX\FBX SDK\2019.0\include</IncludePath>
+    <ReferencePath>C:\Program Files\Autodesk\FBX\FBX SDK\2019.0\lib\vs2015\x64\release;$(ReferencePath)</ReferencePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -130,7 +135,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>winmm.lib;pdh.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>winmm.lib;pdh.lib;assimp-vc142-mt.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ProgramDatabaseFile>$(OutDir)$(TargetName).pdb</ProgramDatabaseFile>
     </Link>
   </ItemDefinitionGroup>
@@ -158,6 +163,7 @@
     <ClCompile Include="..\VulkanSetup\AnimationDataPack.cpp" />
     <ClCompile Include="..\VulkanSetup\AnimationDataRow.cpp" />
     <ClCompile Include="..\VulkanSetup\AnimationLoader.cpp" />
+    <ClCompile Include="..\VulkanSetup\BoneStructure.cpp" />
     <ClCompile Include="..\VulkanSetup\FrameData.cpp" />
     <ClCompile Include="..\VulkanSetup\HalfFloat.cpp" />
     <ClCompile Include="..\VulkanSetup\MathEx.cpp" />
@@ -167,12 +173,14 @@
     <ClCompile Include="..\VulkanSetup\TransformStructure.cpp" />
     <ClCompile Include="..\VulkanSetup\XMLData.cpp" />
     <ClCompile Include="..\VulkanSetup\XMLLoader.cpp" />
+    <ClCompile Include="FBXLoader.cpp" />
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\VulkanSetup\AnimationDataPack.h" />
     <ClInclude Include="..\VulkanSetup\AnimationDataRow.h" />
     <ClInclude Include="..\VulkanSetup\AnimationLoader.h" />
+    <ClInclude Include="..\VulkanSetup\BoneStructure.h" />
     <ClInclude Include="..\VulkanSetup\DirectXDefine.h" />
     <ClInclude Include="..\VulkanSetup\FrameData.h" />
     <ClInclude Include="..\VulkanSetup\HalfFloat.h" />
@@ -183,6 +191,7 @@
     <ClInclude Include="..\VulkanSetup\TransformStructure.h" />
     <ClInclude Include="..\VulkanSetup\XMLData.h" />
     <ClInclude Include="..\VulkanSetup\XMLLoader.h" />
+    <ClInclude Include="FBXLoader.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -68,7 +68,7 @@ BoneStructure* ResourceLoader::getSkeletonOrigin(std::string path)
 	if (find != _skeletons.end())
 		return (*find).second;
 
-	loadSkeleton(path, "");
+	loadSkeleton(path);
 
 	return _skeletons[path];
 }
@@ -88,7 +88,7 @@ BoneStructure* ResourceLoader::getSkeleton(std::string path)
 	if (find != _skeletons.end())
 		return new BoneStructure(*(*find).second);
 
-	loadSkeleton(path, "");
+	loadSkeleton(path);
 
 	//복사해서 보내삼
 	return new BoneStructure(*_skeletons[path]);
@@ -104,10 +104,10 @@ void ResourceLoader::loadAnimation(std::string path)
 	_mutex.unlock();
 }
 
-void ResourceLoader::loadSkeleton(std::string path, std::string renderTarget)
+void ResourceLoader::loadSkeleton(std::string path)
 {
 	SkeletonLoader loader;
-	TransformStructure* structure = loader.loadSkeleton(path, renderTarget);
+	TransformStructure* structure = loader.loadSkeletonBinary(path);
 	BoneStructure* boneStructure = new BoneStructure(structure);
 
 	_mutex.lock();
@@ -122,6 +122,7 @@ void ResourceLoader::loadSkeleton(std::string path, std::string renderTarget)
 	_mutex.unlock();
 }
 
+
 void ResourceLoader::preloadAnimation(std::string path)
 {
 	auto find = _animations.find(path);
@@ -135,7 +136,7 @@ void ResourceLoader::preloadAnimation(std::string path)
 		},this,path);
 }
 
-void ResourceLoader::preloadSkeleton(std::string path, std::string renderTarget)
+void ResourceLoader::preloadSkeleton(std::string path)
 {
 }
 

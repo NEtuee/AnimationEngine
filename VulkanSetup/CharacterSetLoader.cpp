@@ -182,7 +182,8 @@ AnimationLayerBase* CharacterSetLoader::createSourceLayer(CharacterSet* characte
 		
 	}
 
-	layer->setDefaultState(defaultState);
+	if(defaultState != "")
+		layer->setDefaultState(defaultState);
 	//layer->initialize();
 
 	auto connectionElem = element->findElement("Connections");

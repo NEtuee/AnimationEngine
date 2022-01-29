@@ -1,5 +1,6 @@
 ﻿#pragma once
 #include "Transform.h"
+#include "Serialize.h"
 #include <vector>
 #include <string>
 
@@ -73,6 +74,9 @@ public:
 	float					getDepth() { return _depth; }
 	const std::vector<TransformStructure*>& getChildren() { return _children; }
 	TransformStructure*		copyThis();
+public:
+	void serialize(Serialization* serialize, std::ostream* stream);
+	void deserialize(Serialization* serialize, std::istream* stream);
 private:
 	void					updateChildren();
 	TransformStructure*		copyStructure(TransformStructure* target);

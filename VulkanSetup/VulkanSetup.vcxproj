@@ -218,8 +218,8 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>&amp;(SolutionDir)VulkanSetup\RapidXML;&amp;(SolutionDir)VulkanSetup\IMGUI</IncludePath>
-    <ReferencePath>C:\VulkanSDK\1.2.182.0\Lib;$(ReferencePath)</ReferencePath>
-    <ExternalIncludePath>&amp;(SolutionDir)VulkanSetup\IMGUI;$(ExternalIncludePath)</ExternalIncludePath>
+    <ReferencePath>$(ReferencePath)</ReferencePath>
+    <ExternalIncludePath>$(ExternalIncludePath)</ExternalIncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -228,7 +228,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>&amp;(SolutionDir)VulkanSetup\RapidXML;&amp;(SolutionDir)VulkanSetup\IMGUI</IncludePath>
-    <ExternalIncludePath>&amp;(SolutionDir)VulkanSetup\IMGUI;$(ExternalIncludePath)</ExternalIncludePath>
+    <ExternalIncludePath>$(ExternalIncludePath)</ExternalIncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>

@@ -27,10 +27,10 @@ public:
 	AnimationDataPack*		getSkeletonPose(std::string path);
 
 	void					loadAnimation(std::string path);
-	void					loadSkeleton(std::string path, std::string renderTarget);
+	void					loadSkeleton(std::string path);
 
 	void					preloadAnimation(std::string path);
-	void					preloadSkeleton(std::string path, std::string renderTarget);
+	void					preloadSkeleton(std::string path);
 
 
 	std::unordered_map<std::string, AnimationDataPack*>& getAnimations();

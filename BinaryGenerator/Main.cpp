@@ -12,9 +12,48 @@
 #include <fstream>
 #include <vector>
 
+#include "FBXLoader.h"
+#include "../VulkanSetup/BoneStructure.h"
+#include "../VulkanSetup/Serialize.h"
+#include "../VulkanSetup/TransformStructure.h"
+
 int main()
 {
-	std::cout << sizeof(FrameData) << "\n";
+	//FBXLoader loader;
+	//loader.loadAnimation("../Resource/Player_Run_02.fbx", "Check");
+
+	/*BoneStructure* bone = loader.loadBone("../Resource/mesh_player_1016.fbx");
+	bone->getRootBone();
+	Serialization seri;
+
+	std::ofstream file;
+	file.open("../Resource/bone.dat", std::ios::binary);
+	bone->getRootBone().serialize(&seri, &file);
+
+	file.close();
+
+	BoneStructure* newBone;
+
+	TransformStructure* tp = new TransformStructure;
+
+	std::ifstream openFile;
+	openFile.open("../Resource/bone.dat", std::ios::binary);
+	tp->deserialize(&seri, &openFile);
+	newBone = new BoneStructure(tp);
+	openFile.close();*/
+
+	//std::ifstream file;
+	//file.open(path, std::ios::binary);
+
+	//AnimationDataRow* row = new AnimationDataRow;
+	//Serialization serialization;
+
+	//row->deserialize(&serialization, &file);
+
+	//return 0;
+
+
+	//std::cout << sizeof(FrameData) << "\n";
 	while (true)
 	{
 		std::string path;
@@ -25,7 +64,9 @@ int main()
 			break;
 
 		AnimationLoader loader;
-		auto ani = loader.loadAnimation(path);
+		FBXLoader fbxLoader;
+		//auto ani = loader.loadAnimation(path);
+		auto ani = fbxLoader.loadAnimation(path.c_str());
 		loader.optimization(*ani);
 
 		std::ofstream save;

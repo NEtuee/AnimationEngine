@@ -4,8 +4,10 @@
 #include "XMLData.h"
 #include "StringEx.h"
 #include "MathEx.h"
+#include "Serialize.h"
 
 #include <iostream>
+#include <fstream>
 #include <time.h>
 #include <utility>
 #include <functional>
@@ -91,6 +93,20 @@ TransformStructure* SkeletonLoader::loadSkeleton(std::string path, std::string r
 	std::cout << "skeleton loaded : " << result << "ms" << std::endl;
 
 	return mainRoot;
+}
+
+TransformStructure* SkeletonLoader::loadSkeletonBinary(std::string path)
+{
+	Serialization serialize;
+	std::ifstream openFile;
+	openFile.open(path, std::ios::binary);
+
+	TransformStructure* tp = new TransformStructure;
+	tp->deserialize(&serialize, &openFile);
+
+	openFile.close();
+
+	return tp;
 }
 
 TransformStructure* SkeletonLoader::createTransformFromData(XMLElement* data)

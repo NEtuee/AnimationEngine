@@ -199,6 +199,46 @@ TransformStructure* TransformStructure::copyThis()
 	return copyStructure(this);
 }
 
+void TransformStructure::serialize(Serialization* serialize, std::ostream* stream)
+{
+	serialize->writeString(stream, _name);
+	serialize->write(stream, &_worldTransform, sizeof(Transform));
+	serialize->write(stream, &_localTransform, sizeof(Transform));
+	serialize->write(stream, &_hashedName, sizeof(size_t));
+	serialize->write(stream, &_depth, sizeof(float));
+	serialize->write(stream, &_canDraw, sizeof(bool));
+
+	unsigned short count = _children.size();
+	serialize->write(stream, &count, sizeof(unsigned short));
+	for (int i = 0; i < count; ++i)
+	{
+		_children[i]->serialize(serialize, stream);
+	}
+
+	//serialize->writeVector(stream, _children);
+}
+
+void TransformStructure::deserialize(Serialization* serialize, std::istream* stream)
+{
+	serialize->readString(stream, _name);
+	serialize->read(stream, &_worldTransform, sizeof(Transform));
+	serialize->read(stream, &_localTransform, sizeof(Transform));
+	serialize->read(stream, &_hashedName, sizeof(size_t));
+	serialize->read(stream, &_depth, sizeof(float));
+	serialize->read(stream, &_canDraw, sizeof(bool));
+
+	unsigned short count = _children.size();
+	serialize->read(stream, &count, sizeof(unsigned short));
+	for (int i = 0; i < count; ++i)
+	{
+		TransformStructure* transformStructure = new TransformStructure;
+		transformStructure->deserialize(serialize, stream);
+
+		transformStructure->_parent = this;
+		_children.push_back(transformStructure);
+	}
+}
+
 void TransformStructure::updateChildren()
 {
 	for (auto iter = _children.begin(); iter != _children.end(); ++iter)
