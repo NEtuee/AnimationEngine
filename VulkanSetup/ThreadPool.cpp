@@ -24,7 +24,7 @@ ThreadPool::~ThreadPool()
 
 bool ThreadPool::jobDone()
 {
-	return _workingCount == 0;
+	return _jobs.size() == 0 && _workingCount == 0;
 }
 
 void ThreadPool::workerThread()

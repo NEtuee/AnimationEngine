@@ -1,17 +1,33 @@
 ﻿#pragma once
 #include "ModelScene.h"
+#include <vector>
 
-class AnimationSourceLayer;
+class AnimationLayerBase;
+class BoneStructure;
+class TransformStructure;
+class CharacterSet;
+class AnimationLayerBase;
+class Model;
+class IKChain;
+class LookAtIKSolver;
+
 class LayerGhostModelScene : public ModelScene
 {
 public:
-	void setLayer(AnimationSourceLayer* layer);
+							LayerGhostModelScene();
 
-	virtual void destroyScene() override;
-	virtual void frame(float deltaTime) override;
+	void					setLayer(AnimationLayerBase* layer);
+	void					setBoneStructure(BoneStructure* bone);
+	void					setIKSolver(LookAtIKSolver* solver);
+
+	virtual void			createScene(Graphics*)			override;
+	virtual void			destroyScene() override;
+	virtual void			frame(float deltaTime) override;
+	virtual bool			renderScene(Graphics*, Camera*) override;
 private:
-	void setAnimation(TransformStructure* root);
+	void					setAnimation();
 private:
-	AnimationSourceLayer* _targetLayer;
+	AnimationLayerBase*		_targetLayer;
+	IKChain*				_chain;
 };
 

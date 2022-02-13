@@ -17,10 +17,10 @@ public:
 	void					destroyAnimationDataPack();
 	void					initialize();
 
-	Transform				getPoseByPercentage(int& outIndex, float percentage, size_t hashedName);
-	Transform				getPoseByTime(int& outIndex, float time, size_t hashedName);
-	Transform				getPoseByIndex(int index, size_t hashedName);
-	Transform				getBlendPoseByTime(int& outIndex, float time, float factor, TransformStructure* structure, const Transform& target);
+	virtual Transform		getPoseByPercentage(size_t& outIndex, float percentage, size_t hashedName);
+	virtual Transform		getPoseByTime(size_t& outIndex, float time, size_t hashedName);
+	virtual Transform		getPoseByIndex(size_t index, size_t hashedName);
+	virtual Transform		getBlendPoseByTime(size_t& outIndex, float time, float factor, TransformStructure* structure, const Transform& target);
 
 	BoneDataRow*			findBone(size_t hashedName);
 

@@ -14,6 +14,7 @@ public:
 								~BoneStructure();
 	
 	void						createHashmap();
+	void						createUpdateOrder();
 	void						destroyBoneStructure();
 
 	void						setModel(Model* model);
@@ -26,10 +27,15 @@ public:
 	Model*						getModel();
 	Shader*						getShader() { return _shader; }
 	float						getModelScale() { return _boneModelScale; }
+
+	void						addToHashmap(TransformStructure* target, float depth);
+
+	const std::vector<TransformStructure*>& getUpdateOrder() { return _transformUpdateOrder; }
 private:
 	//TransformStructure*			findBone(const std::string target, TransformStructure* root);
 
 	void						createHashmap(TransformStructure* root, float depth);
+	void						createUpdateOrder(TransformStructure* root);
 	void						destroyBoneTransforms(TransformStructure* root);
 private:
 	TransformStructure*			_structureTransform = nullptr;
@@ -39,6 +45,7 @@ private:
 	Shader*						_shader = nullptr;
 
 	std::unordered_map<size_t,TransformStructure*> _hashedMap;
+	std::vector<TransformStructure*> _transformUpdateOrder;
 
 	int							_boneModelCount = 0;
 	int							_updateCount = 0;

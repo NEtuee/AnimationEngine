@@ -19,13 +19,13 @@ public:
 	void					deleteCondition(size_t index);
 
 	const std::vector<AnimationStateCondition*>& getConditions();
-	AnimationStateBase*			getTargetState();
+	AnimationStateBase*		getTargetState();
 	float					getBlendTime();
 	bool					isEmpty();
 	bool					isMeet();
 private:
 	std::vector<AnimationStateCondition*>		_conditions;
-	AnimationStateBase*								_targetState;
+	AnimationStateBase*							_targetState;
 	float										_blendTime;
 };
 

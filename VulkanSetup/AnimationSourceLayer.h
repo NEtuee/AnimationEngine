@@ -29,7 +29,7 @@ public:
 
 	AnimationStateBase*					getCurrentState();
 	const std::vector<AnimationStateBase*>& getStates();
-	virtual Transform					getCurrentPose(TransformStructure* structure, int& outIndex) override;
+	virtual Transform					getCurrentPose(TransformStructure* structure, size_t& outIndex, bool masking = false) override;
 private:
 	AnimationStateMachine*				_stateMachine;
 	std::string							_name;

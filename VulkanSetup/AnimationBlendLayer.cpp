@@ -6,7 +6,7 @@
 
 AnimationBlendLayer::AnimationBlendLayer()
 	:_partialMaskRoot(nullptr), _additiveBasePose(nullptr), _layer1(nullptr), _layer2(nullptr),
-	_weight(1.f),_maskDepth(0.f),_partialSmoothCount(0.f), _masking(false),_inverseMasking(false), _additive(false),
+	_weight(1.f),_maskDepth(0.f),_partialSmoothCount(0.f), _additive(false),
 	_characterRoot(nullptr),_rotationRoot(nullptr)
 {
 
@@ -28,15 +28,6 @@ void AnimationBlendLayer::frame(float deltaTime)
 {
 	_layer1->frame(deltaTime);
 	_layer2->frame(deltaTime);
-}
-
-void AnimationBlendLayer::afterLoop(TransformStructure* structure)
-{
-	_layer1->afterLoop(structure);
-	_layer2->afterLoop(structure);
-
-	if(getMaskBoneHashedName() == structure->getHashedName())
-		setMasking(false);
 }
 
 void AnimationBlendLayer::setWeight(float value)
@@ -77,14 +68,9 @@ TransformStructure* AnimationBlendLayer::getMaskBone()
 	return _partialMaskRoot;
 }
 
-void AnimationBlendLayer::setMasking(bool value)
+bool AnimationBlendLayer::isMaskBone(TransformStructure* bone)
 {
-	_masking = value;
-}
-
-bool AnimationBlendLayer::IsMasking()
-{
-	return _masking;
+	return _partialMaskRoot == bone;
 }
 
 void AnimationBlendLayer::setMaskDepth(float depth)
@@ -115,16 +101,6 @@ void AnimationBlendLayer::setSmoothCount(float value)
 float AnimationBlendLayer::getSmoothCount()
 {
 	return _partialSmoothCount;
-}
-
-void AnimationBlendLayer::setInversMasking(bool value)
-{
-	_inverseMasking = value;
-}
-
-bool AnimationBlendLayer::isInverseMasking()
-{
-	return _inverseMasking;
 }
 
 void AnimationBlendLayer::setRotationRootBone(TransformStructure* root)
@@ -168,13 +144,12 @@ Transform AnimationBlendLayer::getAdditiveBasePose(size_t hashedName)
 	return getAdditiveBasePose()->getPoseByIndex(0, hashedName);
 }
 
-Transform AnimationBlendLayer::getCurrentPose(TransformStructure* structure, int& outIndex)
+Transform AnimationBlendLayer::getCurrentPose(TransformStructure* structure, size_t& outIndex, bool masking)
 {
-	int twoIndex;
-	Transform mainPose = _layer1->getCurrentPose(structure, outIndex);
-	Transform blendTarget = _layer2->getCurrentPose(structure, twoIndex);
+	size_t twoIndex;
 
-	updateWorldCache(mainPose, structure);
+	Transform mainPose = _layer1->getCurrentPose(structure, outIndex, masking);
+	Transform blendTarget = _layer2->getCurrentPose(structure, twoIndex, masking);
 
 	if (getWeight() <= 0.f || twoIndex == -1)
 		return mainPose;
@@ -183,9 +158,9 @@ Transform AnimationBlendLayer::getCurrentPose(TransformStructure* structure, int
 
 	if (hashedName == getMaskBoneHashedName())
 	{
-		setMasking(true);
+		outIndex = -2;
 	}
-	else if (getMaskBone() != nullptr && IsMasking() == false)
+	else if (getMaskBone() != nullptr && masking == false)
 		return mainPose;
 
 	if (IsAdditive() && outIndex != -1)
@@ -194,30 +169,15 @@ Transform AnimationBlendLayer::getCurrentPose(TransformStructure* structure, int
 		blendTarget = mainPose.add(blendTarget);
 	}
 
-	//mainPose = _layer2->getCurrentWorldPose(_partialMaskRoot, find);
 	mainPose = mainPose.lerp(blendTarget, getWeight() * getPartialMaskWeight(structure->getDepth()));
 
-	updateWorldCache(mainPose, structure);
-
-	if (hashedName == getMaskBoneHashedName() && _rotationRoot != nullptr)
+	if (hashedName == getMaskBoneHashedName() && _rotationRoot != nullptr) //고칠거
 	{
-		//bool find = false;
-		//Transform world = _layer2->getCurrentWorldPose(_partialMaskRoot, find);
-
-		//_partialMaskRoot->getParent()->updateWorld();
-		//mainPose.setRotation(world.worldToLocal(_layer2->getCurrentWorldPose(structure->getParent(), find)).getRotation());
-		//mainPose.setRotation(world.worldToLocal(_partialMaskRoot->getParent()->getWorldTransform()).getRotation());
-		
-
-
 		auto rootBone = _layer2->getCurrentPose(_rotationRoot, twoIndex);
 		float angle = XMVectorGetX(XMVector3AngleBetweenNormals(_characterRoot->getLocalTransform().getForward(), rootBone.getForward())) - 3.141592f * 0.5f;
 		XMVECTOR targetRotation = XMQuaternionMultiply(XMQuaternionRotationAxis(mainPose.getRight(), angle), mainPose.getRotation());
 		targetRotation = XMQuaternionSlerp(mainPose.getRotation(), targetRotation, getWeight());
 		mainPose.setRotation(targetRotation);
-
-
-		//structure->SetLocalRotation(world.getRotation());
 	}
 
 	return mainPose;

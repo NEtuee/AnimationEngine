@@ -70,6 +70,21 @@ void TransformStructure::SetWorldScale(const XMVECTOR& vec)
 	updateLocal();
 }
 
+void TransformStructure::SetWorldPositionNoCalc(const XMVECTOR& vec)
+{
+	_worldTransform.setPosition(vec);
+}
+
+void TransformStructure::SetWorldRotationNoCalc(const XMVECTOR& vec)
+{
+	_worldTransform.setRotation(vec);
+}
+
+void TransformStructure::SetWorldScaleNoCalc(const XMVECTOR& vec)
+{
+	_worldTransform.setScale(vec);
+}
+
 void TransformStructure::SetWorldPosition(const XMFLOAT3& f)
 {
 	_worldTransform.setPosition(f);
@@ -174,6 +189,30 @@ void TransformStructure::updateWorld()
 	updateChildren();
 }
 
+void TransformStructure::updateLocalSelf()
+{
+	if (hasParent())
+	{
+		_localTransform = _worldTransform.worldToLocal(_parent->getWorldTransform());
+	}
+	else
+	{
+		_localTransform = _worldTransform;
+	}
+}
+
+void TransformStructure::updateWorldSelf()
+{
+	if (hasParent())
+	{
+		_worldTransform = _localTransform.localToWorld(_parent->getWorldTransform());
+	}
+	else
+	{
+		_worldTransform = _localTransform;
+	}
+}
+
 TransformStructure* TransformStructure::copyStructure(TransformStructure* target)
 {
 	TransformStructure* transform = new TransformStructure;
@@ -208,7 +247,7 @@ void TransformStructure::serialize(Serialization* serialize, std::ostream* strea
 	serialize->write(stream, &_depth, sizeof(float));
 	serialize->write(stream, &_canDraw, sizeof(bool));
 
-	unsigned short count = _children.size();
+	unsigned short count = static_cast<unsigned short>(_children.size());
 	serialize->write(stream, &count, sizeof(unsigned short));
 	for (int i = 0; i < count; ++i)
 	{
@@ -227,7 +266,7 @@ void TransformStructure::deserialize(Serialization* serialize, std::istream* str
 	serialize->read(stream, &_depth, sizeof(float));
 	serialize->read(stream, &_canDraw, sizeof(bool));
 
-	unsigned short count = _children.size();
+	unsigned short count = static_cast<unsigned short>(_children.size());
 	serialize->read(stream, &count, sizeof(unsigned short));
 	for (int i = 0; i < count; ++i)
 	{

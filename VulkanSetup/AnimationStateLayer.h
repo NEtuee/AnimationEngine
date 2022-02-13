@@ -51,11 +51,11 @@ public:
 	Transform								getAdditiveBasePose(size_t hashedName);
 	//Transform								getIncreasedTransform(TransformStructure* target);
 
-	AnimationStateBase*							findState(std::string name);
+	AnimationStateBase*						findState(std::string name);
 
 	std::string								getName();
-	const std::vector<AnimationStateBase*>&		getStates();
-	Transform								getCurrentPose(TransformStructure* structure, int& outIndex);
+	const std::vector<AnimationStateBase*>&	getStates();
+	Transform								getCurrentPose(TransformStructure* structure, size_t& outIndex);
 private:
 	AnimationStateMachine*					_stateMachine;
 	std::string								_name;

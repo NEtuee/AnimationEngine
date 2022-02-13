@@ -145,7 +145,7 @@
 //	return _isEnd;
 //}
 //
-//Transform AnimationPlayer::getIncreasePerFrameReal(TransformStructure* structure, int& outIndex)
+//Transform AnimationPlayer::getIncreasePerFrameReal(TransformStructure* structure, size_t& outIndex)
 //{
 //	Transform current = getIncreasePerFrame(_animation, _currentTime, _prevTime, structure, outIndex);
 //	if (_blending)
@@ -158,7 +158,7 @@
 //	return current;
 //}
 //
-//Transform AnimationPlayer::getIncreasePerFrame(AnimationDataPack* data, float currentTime, float prevTime, TransformStructure* structure, int& outIndex)
+//Transform AnimationPlayer::getIncreasePerFrame(AnimationDataPack* data, float currentTime, float prevTime, TransformStructure* structure, size_t& outIndex)
 //{
 //	Transform current = data->getPoseByTime(outIndex, currentTime, structure->getHashedName());
 //	Transform increase = data->getPoseByTime(outIndex, prevTime, structure->getHashedName());
@@ -175,7 +175,7 @@
 //	return increase;
 //}
 //
-//Transform AnimationPlayer::getcurrentPose(TransformStructure* structure, int& outIndex)
+//Transform AnimationPlayer::getcurrentPose(TransformStructure* structure, size_t& outIndex)
 //{
 //	Transform pose;
 //

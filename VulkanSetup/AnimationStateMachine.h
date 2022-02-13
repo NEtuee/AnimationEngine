@@ -26,20 +26,18 @@ public:
 
 	void									frame(float deltaTime);
 
-	AnimationStateBase*							findState(std::string name);
-//	Transform								getIncreasedTransform(TransformStructure* target);
-
-	AnimationStateBase*							getCurrentState();
-	const std::vector<AnimationStateBase*>&		getStates();
-	Transform								getCurrentPose(TransformStructure* structure, int& outIndex);
+	AnimationStateBase*						findState(std::string name);
+	AnimationStateBase*						getCurrentState();
+	const std::vector<AnimationStateBase*>&	getStates();
+	Transform								getCurrentPose(TransformStructure* structure, size_t& outIndex);
 private:
-	std::vector<AnimationStateBase*>			_states;
-	AnimationStateBase* _defaultState;
-	AnimationStateBase* _currentState;
-	AnimationStateBase* _targetState;
+	std::vector<AnimationStateBase*>		_states;
+	AnimationStateBase*						_defaultState;
+	AnimationStateBase*						_currentState;
+	AnimationStateBase*						_targetState;
 
-	double _blendTimer;
-	double _blendDuration;
+	float									_blendTimer;
+	float									_blendDuration;
 	bool									_stateChanging;
 };
 

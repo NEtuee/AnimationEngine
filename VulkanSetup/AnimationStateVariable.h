@@ -13,7 +13,7 @@ class AnimationStateVariable
 {
 public:
 	virtual void			createVariable(std::string name, void* value)	= 0;
-	virtual void			deleteVariable()								;
+	virtual void			deleteVariable();
 
 	virtual size_t			getDefaultSize()								= 0;
 	virtual void*			getVariable()									= 0;

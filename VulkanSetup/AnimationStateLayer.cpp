@@ -182,7 +182,7 @@ const std::vector<AnimationStateBase*>& AnimationStateLayer::getStates()
 	return _stateMachine->getStates();
 }
 
-Transform AnimationStateLayer::getCurrentPose(TransformStructure* structure, int& outIndex)
+Transform AnimationStateLayer::getCurrentPose(TransformStructure* structure, size_t& outIndex)
 {
 	return _stateMachine->getCurrentPose(structure, outIndex);
 }

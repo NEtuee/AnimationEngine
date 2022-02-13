@@ -12,16 +12,16 @@ public:
 	bool			initialize();
 	void			frame();
 
-	double			getTime();
-	double			getGlobalTime();
-	double			getTimeScale();
-	void			setTimeScale(double value);
+	float			getDeltaTime();
+	float			getGlobalTime();
+	float			getTimeScale();
+	void			setTimeScale(float value);
 private:
 	INT64			_frequency;
-	double			_ticksPerMs;
+	float			_ticksPerMs;
 	INT64			_startTime;
-	double			_frameTime;
+	float			_frameTime;
 
-	double			_timeScale;
-	double			_globalTimer;
+	float			_timeScale;
+	float			_globalTimer;
 };

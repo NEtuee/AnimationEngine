@@ -5,7 +5,7 @@
 #include <cmath>
 
 AnimationState::AnimationState()
-	:_connections(), _name(""), _animation(nullptr)
+	:_connections(), _name(""), _animation(nullptr), _startTime(0.f)
 {
 }
 
@@ -49,7 +49,7 @@ void AnimationState::deleteConnection(size_t index)
 	_connections.erase(_connections.begin() + index);
 }
 
-void AnimationState::setStartTime(double time)
+void AnimationState::setStartTime(float time)
 {
 	_startTime = time;
 }
@@ -59,7 +59,7 @@ bool AnimationState::isLoop()
 	return _animation->isLoop();
 }
 
-float AnimationState::getAnimationPercentage(double currentTime)
+float AnimationState::getAnimationPercentage(float currentTime)
 {
 	float percentage = static_cast<float>((currentTime - _startTime) / _animation->getTime());
 	//percentage = MathEx::clamp01(percentage);
@@ -71,16 +71,16 @@ AnimationDataPack* AnimationState::getAnimationPack()
 	return _animation;
 }
 
-Transform AnimationState::getCurrentPose(size_t hashedName, double time, int& outIndex)
+Transform AnimationState::getCurrentPose(size_t hashedName, float time, size_t& outIndex)
 {
-	double animationTime = (time - _startTime) * _animation->getSpeed();
+	float animationTime = (time - _startTime) * _animation->getSpeed();
 	if (_animation->isLoop())
 		animationTime = std::fmod(animationTime, _animation->getTime());
 
 	return _animation->getPoseByTime(outIndex, animationTime, hashedName);
 }
 
-Transform AnimationState::getBlendPoseByTime(size_t hashedName, double currentTime, float factor, const Transform& blendTarget, int& outIndex)
+Transform AnimationState::getBlendPoseByTime(size_t hashedName, float currentTime, float factor, const Transform& blendTarget, size_t& outIndex)
 {
 	Transform pose = getCurrentPose(hashedName, currentTime, outIndex);
 	pose = pose.lerp(blendTarget, factor);

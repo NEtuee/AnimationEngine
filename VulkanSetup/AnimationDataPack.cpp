@@ -2,6 +2,7 @@
 #include "AnimationDataRow.h"
 #include "TransformStructure.h"
 #include "Transform.h"
+#include "MathEx.h"
 
 AnimationDataPack::AnimationDataPack()
 	:_name(""), _animation(nullptr), _speed(0.f), _time(0.f), _frameSecond(0.f), _fps(0), _frameCount(0), _isLoop(false)
@@ -26,6 +27,7 @@ void AnimationDataPack::createAnimationDataPack(TransformStructure* transform, s
 	row->_isAdditive = false;
 	row->_isFacial = false;
 	row->_isSinglebone = false;
+	row->_hashBones.createSimpleHashtable(row->_boneConut);
 
 	createAnimationDataPackFromTransforms(transform, row);
 
@@ -49,14 +51,14 @@ void AnimationDataPack::initialize()
 	_isLoop = false;
 }
 
-Transform AnimationDataPack::getPoseByPercentage(int& outIndex, float percentage, size_t hashedName)
+Transform AnimationDataPack::getPoseByPercentage(size_t& outIndex, float percentage, size_t hashedName)
 {
 	float time = _time * percentage;
 
 	return getPoseByTime(outIndex, time, hashedName);
 }
 
-Transform AnimationDataPack::getPoseByTime(int& outIndex, float time, size_t hashedName)
+Transform AnimationDataPack::getPoseByTime(size_t& outIndex, float time, size_t hashedName)
 {
 	if (isLoop())
 		time = std::fmod(time, getTime());
@@ -94,17 +96,30 @@ Transform AnimationDataPack::getPoseByTime(int& outIndex, float time, size_t has
 
 		float factor = (time - currTime) / (nextTime - currTime);
 
-		pose.setTransform(
-			XMVectorLerp(vec[outIndex].getPositionVector(), vec[outIndex + 1].getPositionVector(), factor),
-			XMVectorLerp(vec[outIndex].getScaleVector(), vec[outIndex + 1].getScaleVector(), factor),
-			XMQuaternionSlerp(vec[outIndex].getRotationVector(), vec[outIndex + 1].getRotationVector(), factor));
+		if (factor == 0.f)
+		{
+			pose.setTransform(vec[outIndex].getPositionVector(), vec[outIndex].getScaleVector(), vec[outIndex].getRotationVector());
+		}
+		else if (MathEx::similar(factor, 1.f, 0.00001f))
+		{
+			pose.setTransform(vec[outIndex + 1].getPositionVector(), vec[outIndex + 1].getScaleVector(), vec[outIndex + 1].getRotationVector());
+		}
+		else
+		{
+			pose.setTransform(
+				XMVectorLerp(vec[outIndex].getPositionVector(), vec[outIndex + 1].getPositionVector(), factor),
+				XMVectorLerp(vec[outIndex].getScaleVector(), vec[outIndex + 1].getScaleVector(), factor),
+				XMQuaternionSlerp(vec[outIndex].getRotationVector(), vec[outIndex + 1].getRotationVector(), factor));
+			
+		}
+		
 	}
 
 
 	return pose;
 }
 
-Transform AnimationDataPack::getPoseByIndex(int index, size_t hashedName)
+Transform AnimationDataPack::getPoseByIndex(size_t index, size_t hashedName)
 {
 	auto bone = findBone(hashedName);
 	if (bone == nullptr)
@@ -123,7 +138,7 @@ Transform AnimationDataPack::getPoseByIndex(int index, size_t hashedName)
 	return pose;
 }
 
-Transform AnimationDataPack::getBlendPoseByTime(int& outIndex, float time, float factor, TransformStructure* structure, const Transform& target)
+Transform AnimationDataPack::getBlendPoseByTime(size_t& outIndex, float time, float factor, TransformStructure* structure, const Transform& target)
 {
 	Transform pose = getPoseByTime(outIndex, time, structure->getHashedName());
 	if (outIndex == -1)
@@ -138,8 +153,11 @@ Transform AnimationDataPack::getBlendPoseByTime(int& outIndex, float time, float
 
 BoneDataRow* AnimationDataPack::findBone(size_t hashedName)
 {
-	auto iterator = (_animation->_bones.find(hashedName));
-	return (iterator == _animation->_bones.end()) ? nullptr : &(*iterator).second;
+	BoneDataRow* row;
+	bool find = _animation->_hashBones.find(hashedName, row);
+	return find ? row : nullptr;
+	//auto iterator = (_animation->_bones.find(hashedName));
+	//return (iterator == _animation->_bones.end()) ? nullptr : &(*iterator).second;
 }
 
 void AnimationDataPack::createAnimationDataPackFromTransforms(TransformStructure* transform, AnimationDataRow* row)
@@ -148,16 +166,13 @@ void AnimationDataPack::createAnimationDataPackFromTransforms(TransformStructure
 	frame.frame = 0;
 	frame.position.StoreVector(transform->getLocalPosition());
 	frame.scale.StoreVector(transform->getLocalScale());
-	frame.rotation.StoreVector(transform->getLocalRotation());
-
-	//XMStoreFloat3(&frame.position, transform->getLocalPosition());
-	//XMStoreFloat3(&frame.scale, transform->getLocalScale());
-	//XMStoreFloat4(&frame.rotation, transform->getLocalRotation());
+	frame.rotation.StoreQuaternion(transform->getLocalRotation());
 
 	BoneDataRow bone;
 	bone._frames.push_back(frame);
 	bone._name = transform->getName();
-	row->_bones.emplace(transform->getHashedName(), bone);
+	row->_hashBones.pushData(transform->getHashedName(), bone);
+	//row->_bones.emplace(transform->getHashedName(), bone);
 
 	auto& children = transform->getChildren();
 	for (auto iterator = children.begin(); iterator != children.end(); ++iterator)
@@ -175,23 +190,31 @@ int AnimationDataPack::timeToStartIndex(float time)
 
 int AnimationDataPack::findNearestIndex(int startIndex, const BoneDataRow* bone)
 {
-	auto iterator = bone->_frames.begin();
-	for (; iterator != bone->_frames.end(); ++iterator)
+	if (bone->_frames.size() == 0)
+		return -1;
+	//else if (bone->_frames[bone->_frames.size() - 1].frame <= startIndex)
+	//{
+	//	return bone->_frames.size() - 1;
+	//}
+
+	int start = 0;
+	int end =  static_cast<int>(bone->_frames.size()) -1;
+	int mid = 0;
+	while (start <= end)
 	{
-		if ((*iterator).frame == startIndex)
+		mid = (start + end) / 2;
+		if (startIndex < bone->_frames[mid].frame)
+			end = mid - 1;
+		else
 		{
-			return static_cast<int>(iterator - bone->_frames.begin());
-		}
-		else if ((*iterator).frame > startIndex)
-		{
-			return static_cast<int>(iterator - bone->_frames.begin()) - 1;
+			start = mid + 1;
 		}
 	}
 
-	if (bone->_frames.size() == 0)
-		return -1;
-
-	return bone->_frames[bone->_frames.size() - 1].frame;
+	int result = start >= bone->_frames.size() ? static_cast<int>(bone->_frames.size()) - 1 : start - 1;
+	if (result < 0)
+		int i = 0;
+	return result;
 }
 
 float AnimationDataPack::indexToTime(int index)

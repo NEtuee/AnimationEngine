@@ -11,6 +11,10 @@
 #include "../VulkanSetup/Transform.h"
 #include "../VulkanSetup/MathEx.h"
 
+
+#include "../VulkanSetup/SplineKeyVariable.h"
+#include "../BinaryGenerator/FBXLoader.h"
+
 #include <vector>
 #include <string>
 #include <iostream>
@@ -37,42 +41,45 @@ int main()
 	Graphics memDC(&bmp);
 	SolidBrush brush(Color(255, 255, 255, 255));
 
-	//AnimationLoader loader;
-	//AnimationDataRow* row = loader.loadAnimationBinary("../VulkanSetup/Resource/ani_idle.dat");
-	//AnimationDataRow* realRow = loader.loadAnimation("../RowResource/Animation/ani_idle.pa");
-	//AnimationDataPack* smallPack = new AnimationDataPack;
-	//smallPack->createAnimationDataPack(row, "ani_idle");
-
+	AnimationLoader loader;
+	FBXLoader fbxLoader;
+	AnimationDataRow* row = loader.loadAnimationBinary("../Resource/Ani_Player_Run_Tilt_R_04.dat");
+	AnimationDataRow* realRow = fbxLoader.loadAnimation("../Resource/Ani_Player_Run_Tilt_R_04.fbx");
+	AnimationDataPack* smallPack = new AnimationDataPack;
+	AnimationDataPack* realPack = new AnimationDataPack;
+	smallPack->createAnimationDataPack(row, "ani_idle");
+	realPack->createAnimationDataPack(realRow, "ani_idle");
 
 	GUIEx gui;
 	gui.createGUI(&memDC);
 
-	//auto& bones = row->_bones;
+	auto& bones = row->_hashBones;
 
-	//bool pick = false;
-	//float scrollY = 0.f;
-	//float scaleY = 1.f;
-
-	//BoneDataRow* graphData = nullptr;
-	//BoneDataRow* debugData = nullptr;
-	//size_t currentName;
-
-	Triangulation tri;
-	tri.createTriangulation();
-	tri.triangulation();
 	bool pick = false;
+	float scrollY = 0.f;
+	float scaleY = 1.f;
 
+	size_t currentName = -1;
+
+	//Triangulation tri;
+	//tri.createTriangulation();
+	//tri.triangulation();
+	//bool pick = false;
+
+	float recentlyX = 0.f;
+	float recentlyY = 0.f;
+	SplineKeyVariable spline;
 
 	while (app.peekMessageCheck() != MessageState::M_QUIT)
 	{
 		if (app.getRecentlyState() == MessageState::M_FALSE)
 		{
-			Sleep(10);
+			Sleep(49);
 
 			POINT p;
 			GetCursorPos(&p);
 			ScreenToClient(app.getHWND(), &p);
-
+#pragma region keyInput
 			if (input->isDown(VK_LEFT))
 				coord.addCenterX(20);
 			if (input->isDown(VK_RIGHT))
@@ -84,41 +91,50 @@ int main()
 
 			if (input->isDown('Q'))
 			{
-				coord.addRatioX(1);
-				coord.addRatioY(1);
+				coord.addRatioX(10);
 			}
 			if (input->isDown('A'))
 			{
-				coord.addRatioX(-1);
-				coord.addRatioY(-1);
+				coord.addRatioX(-10);
+			}
+
+			if (input->isDown('W'))
+			{
+				coord.addRatioY(10);
+			}
+			if (input->isDown('S'))
+			{
+				coord.addRatioY(-10);
 			}
 
 
-			//if (input->isDown('E'))
-			//{
-			//	scrollY += 10.f;
-			//	scrollY = scrollY >= 0.f ? 0.f : scrollY;
-			//}
-			//if (input->isDown('D'))
-			//{
-			//	scrollY -= 10.f;
-			//	
-			//}
+			if (input->isDown('E'))
+			{
+				scrollY += 10.f;
+				scrollY = scrollY >= 0.f ? 0.f : scrollY;
+			}
+			if (input->isDown('D'))
+			{
+				scrollY -= 10.f;
+
+			}
+
 
 			input->updateMousePosition(p.x, p.y);
 
-			if (input->isDown('S') && !pick)
+			if (input->isDown('F') && !pick)
 			{
 				XMFLOAT2 world = coord.toWorldSpace(XMFLOAT2{ (float)p.x,(float)p.y });
-				tri.addPoint(world.x, world.y);
-				tri.triangulation();
+				spline.insertPoint(world.y, world.x);
 
 				pick = true;
 			}
-			else if (input->isUp('S') && pick)
+			else if (input->isUp('F') && pick)
 			{
 				pick = false;
 			}
+
+#pragma endregion
 
 			HDC hdc = GetDC(app.getHWND());
 			Graphics graphics(hdc);
@@ -129,13 +145,59 @@ int main()
 			auto worldPoint = coord.toWorldSpace(XMFLOAT2{ (float)p.x,(float)p.y });
 			coord.drawRect(&memDC, Color(255, 0, 255, 0), worldPoint.x, worldPoint.y, 10, 10);
 
+			
 
-			//gui.button(Color(255, 0, 0, 0), L"wdw", 100, 30, 100, 15);
-
-			/*int i = 0;
-			for (auto iterator = bones.begin(); iterator != bones.end(); ++iterator)
+			for (int i = 0; i < spline.getSize() - 1; ++i)
 			{
-				std::wstring wide = std::wstring(iterator->second._name.begin(), iterator->second._name.end());
+				for (int j = 0; j < 10; ++j)
+				{
+					XMVECTOR start = spline.getSpline(i, (float)j / 10.f);
+					XMVECTOR end = spline.getSpline(i, (float)(j + 1) / 10.f);
+
+					XMFLOAT3 sf;
+					XMFLOAT3 ef;
+
+					XMStoreFloat3(&sf, start);
+					XMStoreFloat3(&ef, end);
+
+					coord.drawLine(&memDC, Color(255, 255, 0, 0), sf.x, sf.y, ef.x, ef.y, false);
+				}
+			}
+
+
+			 int k = 0;
+			auto& table = bones.getTable();
+			for (size_t i = 0; i < table.size(); ++i)
+			{
+				for (size_t j = 0; j < table[i].size(); ++j)
+				{
+					std::wstring wide = std::wstring(table[i][j]._data._name.begin(), table[i][j]._data._name.end());
+
+					++k;
+
+					float startY = 20 * k + 20 + scrollY;
+					if (startY < 0.f || startY >= 600.f)
+						continue;
+					if (gui.button(Color(255, 0, 0, 0), wide.c_str(), 120, startY, 100, 15))
+					{
+						currentName = table[i][j]._key;
+
+						spline.clearPoint();
+						spline.addPoint(XMVectorGetW(realPack->getPoseByIndex(0, currentName).getRotation()), 0.f);
+
+						float interval = 1.f / (float)realPack->getFps();
+
+						FrameData* data = &(*(table[i][j]._data._frames.end() - 1));
+						interval = interval * data->frame;
+						spline.addPoint(data->rotation.getQuaternion().w, interval);
+					}
+				}
+			}
+
+
+			/*for (auto iterator = table.begin(); iterator != table.end(); ++iterator)
+			{
+				std::wstring wide = std::wstring((*iterator)._data._name.begin(), iterator->second._name.end());
 
 				++i;
 
@@ -144,96 +206,110 @@ int main()
 					continue;
 				if (gui.button(Color(255, 0, 0, 0), wide.c_str(), 120, startY, 100, 15))
 				{
-					graphData = &iterator->second;
-					debugData = &realRow->_bones[iterator->first];
 					currentName = iterator->first;
+
+					spline.clearPoint();
+					spline.addPoint(XMVectorGetW(realPack->getPoseByIndex(0,currentName).getRotation()), 0.f);
+
+					float interval = 1.f / (float)realPack->getFps();
+
+					FrameData* data = &(*((*iterator).second._frames.end() - 1));
+					interval = interval * data->frame;
+					spline.addPoint(data->rotation.getQuaternion().w, interval);
 				}
 				
-			}
-			
-
-			if (graphData != nullptr)
-			{
-				float avg = 0.f;
-				for (int i = 1; i < graphData->_frames.size(); ++i)
-				{
-					float px = static_cast<float>(graphData->_frames[i-1].frame) * 0.1f;
-					float py = graphData->_frames[i-1].rotation._w;
-
-					float x = static_cast<float>(graphData->_frames[i].frame) * 0.1f;
-					float y = graphData->_frames[i].rotation._w;
-
-					coord.drawLine(&memDC, Color(100, 255, 0, 0), px, py * scaleY, x, y * scaleY,false);
-				}
-
-				
-
-				for (int i = 1; i < debugData->_frames.size(); ++i)
-				{
-					float px = static_cast<float>(debugData->_frames[i - 1].frame) * 0.1f;
-					float py = debugData->_frames[i - 1].rotation._w;
-
-					float x = static_cast<float>(debugData->_frames[i].frame) * 0.1f;
-					float y = debugData->_frames[i].rotation._w;
-
-					int outIndex;
-					float pt = (float)debugData->_frames[i].frame / (float)smallPack->getFrameCount();
-					XMFLOAT4 realRot;
-					XMStoreFloat4(&realRot, smallPack->getPoseByPercentage(outIndex, pt, currentName).getRotation());
-					avg += 1.f - MathEx::abs(realRot.w - y) / 2.f;
-
-					coord.drawLine(&memDC, Color(100, 0, 0, 255), px, py * scaleY, x, y * scaleY, false);
-				}
-
-				auto wf = std::to_wstring(avg / (debugData->_frames.size() - 1));
-				coord.drawString(&memDC, Color(255, 0, 0, 0), wf.c_str(), 10, 100);
 			}*/
-
-			auto& points = tri.getPoints();
-			auto& triangles = tri.getTriangles();
-
-			for (int i = 0; i < triangles.size(); ++i)
+			
+			bool iteration = false;
+			if (input->isDown(VK_RETURN))
 			{
-				auto a = points[triangles[i]._a];
-				auto b = points[triangles[i]._b];
-				auto c = points[triangles[i]._c];
-
-				float ots;
-				float t;
-				float s;
-				float nearPointDistance;
-				XMVECTOR nearestPoint;
-				
-				bool inTriangle = !Math::findNearestPointOnTriangle(XMVectorSet(worldPoint.x, worldPoint.y, 0.f, 0.f),
-					XMVectorSet(a.x, a.y, 0.f, 0.f), XMVectorSet(b.x, b.y, 0.f, 0.f), XMVectorSet(c.x, c.y, 0.f, 0.f),
-					nearestPoint, nearPointDistance, t, s, ots);
-
-				Color red = Color(255, 255, 0, 0);
-				Color green = Color(255, 0, 255, 0);
-	
-				coord.drawLine(&memDC, inTriangle ? green : red, a.x, a.y, b.x, b.y);
-				coord.drawLine(&memDC, inTriangle ? green : red, b.x, b.y, c.x, c.y);
-				coord.drawLine(&memDC, inTriangle ? green : red, c.x, c.y, a.x, a.y);
-
-				if (inTriangle == false)
-				{
-					XMFLOAT3 stored;
-					XMStoreFloat3(&stored, nearestPoint);
-					coord.drawRect(&memDC, Color(255, 0, 255, 0), stored.x, stored.y, 10, 10);
-
-					coord.drawLine(&memDC, Color(255, 0, 255, 0), stored.x, stored.y, worldPoint.x, worldPoint.y);
-				}
-
-				
+				iteration = true;
 			}
 
-			
-			
+
+			if (currentName != -1)
+			{
+				float interval = 0.01666f;
+				float time = realPack->getTime();
+				float timer = 0.f;
+
+				/*float biggestDiff = 0.f;
+				float diffVal = 0.f;
+				float diffTime = 0.f;*/
+
+				while (true)
+				{
+					size_t outIndex;
+					auto pose = XMVectorGetW(realPack->getPoseByTime(outIndex, timer, currentName).getRotation());
+					float save = timer;
+					timer += interval;
+					auto pose2 = XMVectorGetW(realPack->getPoseByTime(outIndex, timer, currentName).getRotation());
+
+					coord.drawLine(&memDC, Color(255, 0, 255, 0), save, pose, timer, pose2, false);
+
+					if (timer >= time)
+					{
+						break;
+					}
+				}
+
+				if (iteration)
+				{
+					float biggestDiff = 0.f;
+					int startIndex = 0;
+
+					for (int i = 0; i < spline.getSize() - 1; ++i)
+					{
+						float startTime = spline.getPointTime(i);
+						float endTime = spline.getPointTime(i + 1);
+						float diff = 0.f;
+						float deltaTime = 0.01666f;
+						timer = startTime;
+						float percentage = timer / time;
+						bool diffCheck = false;
+						while (true)
+						{
+							size_t outIndex;
+							auto pose = XMVectorGetW(realPack->getPoseByTime(outIndex, timer, currentName).getRotation());
+							percentage = timer / time;
+
+							float splineValue = spline.getValueByPercentage(percentage);
+							float diffrence = MathEx::abs(pose - splineValue);
+							if (diffrence >= 0.0005f)
+								diffCheck = true;
+							diff += diffrence;
+
+							timer += deltaTime;
+							if (timer >= endTime)
+								break;
+						}
+
+						if (diff > biggestDiff)
+						{
+							startIndex = i;
+							biggestDiff = diff;
+						}
+
+						if (diffCheck == false)
+							int wer = 0;
+					}
+
+					size_t outIndex;
+					float insertTime = spline.getPointTime(startIndex) + (spline.getPointTime(startIndex + 1) - spline.getPointTime(startIndex)) * 0.5f;
+					float rotationData = XMVectorGetW(realPack->getPoseByTime(outIndex, insertTime, currentName).getRotation());
+					
+					recentlyX = insertTime;
+					recentlyY = rotationData;
+
+					spline.insertPoint(rotationData, insertTime);
+					//spline.insertPoint(diffVal, diffTime);
+				}
+
+			}
+
+			coord.drawRect(&memDC, Color(100, 255, 0, 0), recentlyX, recentlyY, 10.f, 10.f);
+
 			graphics.DrawImage(&bmp, 0, 0);
-			
-			
-
-
 			ReleaseDC(app.getHWND(), hdc);
 
 		}

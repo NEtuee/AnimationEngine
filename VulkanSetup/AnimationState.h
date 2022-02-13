@@ -18,21 +18,21 @@ public:
 	void						addConnection(AnimationStateConnection* connection);
 	void						deleteConnection(size_t index);
 
-	void						setStartTime(double time);
+	void						setStartTime(float time);
 
-	bool isLoop();
-	float getAnimationPercentage(double currentTime);
+	bool						isLoop();
+	float						getAnimationPercentage(float currentTime);
 
 	AnimationDataPack*			getAnimationPack();
-	Transform					getCurrentPose(size_t hashedName, double currentTime, int& outIndex);
-	Transform					getBlendPoseByTime(size_t hashedName, double currentTime, float factor, const Transform& blendTarget, int& outIndex);
+	Transform					getCurrentPose(size_t hashedName, float currentTime, size_t& outIndex);
+	Transform					getBlendPoseByTime(size_t hashedName, float currentTime, float factor, const Transform& blendTarget, size_t& outIndex);
 	std::string					getName() { return _name; }
 	std::vector<AnimationStateConnection*>& getConnections();
 private:
 	std::vector<AnimationStateConnection*>	_connections;
 	std::string								_name;
 
-	double									_startTime;
+	float									_startTime;
 	AnimationDataPack*						_animation;
 };
 

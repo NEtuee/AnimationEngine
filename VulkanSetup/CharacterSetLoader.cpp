@@ -16,6 +16,13 @@
 #include "AnimationLayerBase.h"
 #include "AnimationBlendLayer.h"
 #include "AnimationSourceLayer.h"
+#include "TransformStructure.h"
+#include "IKChain.h"
+#include "IKSolver.h"
+#include "AnalyticTwoBoneIKSolver.h"
+#include "CCDIKSolver.h"
+#include "FABRIKSolver.h"
+#include "LookAtIKSolver.h"
 #include "BlendTree.h"
 #include "StringEx.h"
 #include <iostream>
@@ -26,7 +33,8 @@ CharacterSet* CharacterSetLoader::loadCharacterSet(std::string path)
     XMLLoader loader;
     auto xml = loader.loadXML_c(path);
 
-    std::string skeletonPath = xml->findElement("Skeleton")->findData("FilePath")->data;
+	auto skeletonData = xml->findElement("Skeleton");
+    std::string skeletonPath = skeletonData->findData("FilePath")->data;
 
     CharacterSet* character = new CharacterSet;
     character->_bone = ResourceLoader::getInstance()->getSkeleton(skeletonPath);
@@ -35,6 +43,7 @@ CharacterSet* CharacterSetLoader::loadCharacterSet(std::string path)
     blendTree->createBlendTree(character->_bone);
 	character->_tree = blendTree;
 
+#pragma region Animation
     auto animationElem = xml->findElement("Animations");
     for (int i = 0; i < animationElem->_childs.size(); ++i)
     {
@@ -50,7 +59,10 @@ CharacterSet* CharacterSetLoader::loadCharacterSet(std::string path)
 
         character->_animations.emplace(name, pack);
     }
+#pragma endregion
 
+
+#pragma region BlendTree
     auto bt = xml->findElement("BlendTree");
     auto variableElem = bt->findElement("Variables");
     for (int i = 0; i < variableElem->_childs.size(); ++i)
@@ -121,7 +133,117 @@ CharacterSet* CharacterSetLoader::loadCharacterSet(std::string path)
 
 	layers.clear();
 	blendLayerTargets.clear();
-    
+#pragma endregion
+
+
+#pragma region Skeleton
+
+	auto transformData = skeletonData->findElement("Transforms");
+	if (transformData != nullptr)
+	{
+		for (int i = 0; i < transformData->_childs.size(); ++i)
+		{
+			auto transform = transformData->_childs[i];
+			std::string transformName = transform->getProperty("Name");
+			auto parent = character->_bone->find(transform->getProperty("Parent"));
+
+			TransformStructure* newTransform = new TransformStructure;
+			std::hash<std::string> nameHash;
+			newTransform->setName(transformName);
+			newTransform->setParent(parent);
+			newTransform->setHashedName(nameHash(transformName));
+		
+			character->_bone->addToHashmap(newTransform, parent == nullptr ? 0.f : parent->getDepth() + 1);
+
+			if (auto localData = transform->findElement("Local"))
+			{
+				if (auto t = localData->findData("T"))
+				{
+					newTransform->SetLocalPosition(StringEx::dataToFloat3(t->data));
+				}
+				if (auto s = localData->findData("S"))
+				{
+					newTransform->SetLocalScale(StringEx::dataToFloat3(s->data));
+				}
+				if (auto r = localData->findData("R"))
+				{
+					auto data = StringEx::dataToFloat4(r->data);
+					newTransform->SetLocalRotation(XMVectorSet(data.x, data.y, data.z, data.w));
+				}
+
+				newTransform->updateWorld();
+			}
+			else if (auto worldData = transform->findElement("World"))
+			{
+				if (auto t = worldData->findData("T"))
+				{
+					newTransform->SetWorldPosition(StringEx::dataToFloat3(t->data));
+				}
+				if (auto s = worldData->findData("S"))
+				{
+					newTransform->SetWorldScale(StringEx::dataToFloat3(s->data));
+				}
+				if (auto r = worldData->findData("R"))
+				{
+					auto data = StringEx::dataToFloat4(r->data);
+					newTransform->SetWorldRotation(XMVectorSet(data.x, data.y, data.z, data.w));
+				}
+
+				newTransform->updateLocal();
+			}
+
+
+		}
+	}
+	
+
+	auto ikChainData = skeletonData->findElement("IKChains");
+	if (ikChainData != nullptr)
+	{
+		for (int i = 0; i < ikChainData->_childs.size(); ++i)
+		{
+			auto ikChain = ikChainData->_childs[i];
+			std::string solverType = ikChain->getProperty("Solver");
+			std::string effectorName = ikChain->getProperty("Effector");
+			std::string rootName = ikChain->getProperty("Root");
+			std::string targetName = ikChain->getProperty("Target");
+
+			auto effector = character->_bone->find(effectorName);
+			auto target = character->_bone->find(targetName);
+			TransformStructure* rootTransform = nullptr;
+
+			IKChain* chain = new IKChain;
+			if (solverType == "CCD")
+			{
+				rootTransform = character->_bone->find(rootName);
+				chain->createIKChain(effector, rootTransform, target, new CCDIKSolver);
+			}
+			else if (solverType == "FABR")
+			{
+				rootTransform = character->_bone->find(rootName);
+				chain->createIKChain(effector, rootTransform, target, new FABRIKSolver);
+			}
+			else if (solverType == "Analytic")
+			{
+				auto solver = new AnalyticTwoBoneIKSolver;
+				solver->setBendTarget(character->_bone->find(ikChain->getProperty("BendTarget")));
+				chain->createIKChain(effector, nullptr, target, solver);
+			}
+			else if (solverType == "LookAt")
+			{
+				auto solver = new LookAtIKSolver;
+				rootTransform = character->_bone->find(rootName);
+				solver->setOptionBone(character->_bone->find(ikChain->getProperty("Head")), character->_bone->find(ikChain->getProperty("Forward")));
+				chain->createIKChain(effector, rootTransform, target, solver);
+			}
+
+			character->_ikChains.push_back(chain);
+		}
+	}
+	
+#pragma endregion
+
+
     xml->destroyChildren();
     delete xml;
 

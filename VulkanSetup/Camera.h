@@ -19,7 +19,7 @@ public:
 	void		render();
 	void		getViewMatrix(XMMATRIX& view);
 	
-	TransformStructure& GetTransform();
+	TransformStructure* GetTransform();
 private:
 	TransformStructure*		transform;
 	XMMATRIX				_viewMatrix;

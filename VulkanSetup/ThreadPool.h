@@ -14,6 +14,12 @@
 class ThreadPool
 {
 public:
+	static ThreadPool* getInstance()
+	{
+		static ThreadPool instance(5);
+		return &instance;
+	}
+
 				ThreadPool(size_t threadCount);
 				~ThreadPool();
 				template <class F, class... Args>

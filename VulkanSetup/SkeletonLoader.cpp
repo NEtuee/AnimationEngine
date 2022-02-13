@@ -70,8 +70,10 @@ TransformStructure* SkeletonLoader::loadSkeleton(std::string path, std::string r
 		
 	}
 
+	std::hash<std::string> nameHash;
 	TransformStructure* mainRoot = new TransformStructure;
 	mainRoot->setName("root");
+	mainRoot->setHashedName(nameHash(mainRoot->getName()));
 
 	for (auto iter = bones.begin(); iter != bones.end(); ++iter)
 	{

@@ -46,14 +46,14 @@ bool AnimationStateBlendSpace::isLoop()
 	return true;
 }
 
-float AnimationStateBlendSpace::getAnimationPercentage(double currentTime)
+float AnimationStateBlendSpace::getAnimationPercentage(float currentTime)
 {
 	return 0.0f;
 }
 
-Transform AnimationStateBlendSpace::getCurrentPose(size_t hashedName, double currentTime, int& outIndex)
+Transform AnimationStateBlendSpace::getCurrentPose(size_t hashedName, float currentTime, size_t& outIndex)
 {
-	double animationTime = (currentTime - _startTime);
+	float animationTime = (currentTime - _startTime);
 
 	auto& triangles = _triangulation->getTriangles();
 	auto& points = _triangulation->getPoints();
@@ -104,7 +104,7 @@ Transform AnimationStateBlendSpace::getCurrentPose(size_t hashedName, double cur
 	return getBarycentricTransformFromTriangle(&triangles[nearestTriangle], hashedName, animationTime, outIndex, nearestT, nearestOTS);
 }
 
-Transform AnimationStateBlendSpace::getBlendPoseByTime(size_t hashedName, double currentTime, float factor, const Transform& blendTarget, int& outIndex)
+Transform AnimationStateBlendSpace::getBlendPoseByTime(size_t hashedName, float currentTime, float factor, const Transform& blendTarget, size_t& outIndex)
 {
 	Transform pose = getCurrentPose(hashedName, currentTime, outIndex);
 	pose = pose.lerp(blendTarget, factor);
@@ -112,9 +112,9 @@ Transform AnimationStateBlendSpace::getBlendPoseByTime(size_t hashedName, double
 	return pose;
 }
 
-Transform AnimationStateBlendSpace::getBarycentricTransformFromTriangle(const Triangle* triangle, size_t hashedName, double animationTime, int& outIndex, float t,float ots)
+Transform AnimationStateBlendSpace::getBarycentricTransformFromTriangle(const Triangle* triangle, size_t hashedName, float animationTime, size_t& outIndex, float t,float ots)
 {
-	int blendIndexA, blendIndexB, blendIndexC;
+	size_t blendIndexA, blendIndexB, blendIndexC;
 
 	Transform poseA = _items[triangle->_a]._animation->getPoseByTime(blendIndexA, static_cast<float>(animationTime), hashedName);
 	Transform poseB = _items[triangle->_b]._animation->getPoseByTime(blendIndexB, static_cast<float>(animationTime), hashedName);

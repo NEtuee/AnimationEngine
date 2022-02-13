@@ -16,7 +16,7 @@ void Triangulation::addPoint(float x, float y)
 
 void Triangulation::triangulation()
 {
-	size_t n = _points.size();
+	int n = static_cast<int>(_points.size());
 	_triangles.clear();
 
 	_points.push_back(XMFLOAT2(-2e9, -2e9));

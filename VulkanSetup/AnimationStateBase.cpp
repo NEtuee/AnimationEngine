@@ -47,21 +47,21 @@ void AnimationStateBase::deleteConnection(size_t index)
 	_connections.erase(_connections.begin() + index);
 }
 
-void AnimationStateBase::setStartTime(double time)
+void AnimationStateBase::setStartTime(float time)
 {
 	_startTime = time;
 }
 
-Transform AnimationStateBase::getCurrentPose(AnimationDataPack* animation, size_t hashedName, double currentTime, int& outIndex)
+Transform AnimationStateBase::getCurrentPose(AnimationDataPack* animation, size_t hashedName, float currentTime, size_t& outIndex)
 {
-	double animationTime = (currentTime - _startTime) * animation->getSpeed();
+	float animationTime = (currentTime - _startTime) * animation->getSpeed();
 	if (animation->isLoop())
 		animationTime = std::fmod(animationTime, animation->getTime());
 
 	return animation->getPoseByTime(outIndex, animationTime, hashedName);
 }
 
-Transform AnimationStateBase::getBlendPoseByTime(AnimationDataPack* animation, size_t hashedName, double currentTime, float factor, const Transform& blendTarget, int& outIndex)
+Transform AnimationStateBase::getBlendPoseByTime(AnimationDataPack* animation, size_t hashedName, float currentTime, float factor, const Transform& blendTarget, size_t& outIndex)
 {
 	Transform pose = getCurrentPose(hashedName, currentTime, outIndex);
 	pose = pose.lerp(blendTarget, factor);

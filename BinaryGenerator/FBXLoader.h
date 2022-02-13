@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include <assimp/Importer.hpp>
 #include <DirectXMath.h>
 #include <unordered_map>

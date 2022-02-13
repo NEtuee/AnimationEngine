@@ -7,7 +7,7 @@
 #include "Timer.h"
 
 AnimationStateMachine::AnimationStateMachine()
-	:_states(),_defaultState(nullptr),_currentState(nullptr),_targetState(nullptr), _stateChanging(false)
+	:_states(),_defaultState(nullptr),_currentState(nullptr),_targetState(nullptr), _stateChanging(false), _blendDuration(0.f),_blendTimer(0.f)
 {
 }
 
@@ -128,7 +128,7 @@ const std::vector<AnimationStateBase*>& AnimationStateMachine::getStates()
 	return _states;
 }
 
-Transform AnimationStateMachine::getCurrentPose(TransformStructure* structure, int& outIndex)
+Transform AnimationStateMachine::getCurrentPose(TransformStructure* structure, size_t& outIndex)
 {
 	if (_currentState == nullptr)
 	{
@@ -144,7 +144,7 @@ Transform AnimationStateMachine::getCurrentPose(TransformStructure* structure, i
 	}
 	else
 	{
-		int blendIndex = 0;
+		size_t blendIndex = 0;
 		Transform blendTarget = _targetState->getCurrentPose(structure->getHashedName(), Timer::getInstance()->getGlobalTime(), blendIndex);
 
 		if (blendIndex == -1)
@@ -153,7 +153,7 @@ Transform AnimationStateMachine::getCurrentPose(TransformStructure* structure, i
 		}
 
 		double currentTime = Timer::getInstance()->getGlobalTime() - _blendTimer;
-		pose = _currentState->getBlendPoseByTime(structure->getHashedName(), Timer::getInstance()->getGlobalTime(), currentTime / _blendDuration, blendTarget, outIndex);
+		pose = _currentState->getBlendPoseByTime(structure->getHashedName(), Timer::getInstance()->getGlobalTime(), static_cast<float>(currentTime / _blendDuration), blendTarget, outIndex);
 
 		if (outIndex == -1)
 		{

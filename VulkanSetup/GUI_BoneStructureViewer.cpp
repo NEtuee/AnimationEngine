@@ -72,7 +72,7 @@ void GUI_BoneStructureViewer::render()
 	}
 	else
 	{
-		ImGui::Text("pos  : "); ImGui::SameLine(); ImGui::SliderFloat3("##1", _positionInput,-10.f,10.f);
+		ImGui::Text("pos  : "); ImGui::SameLine(); ImGui::SliderFloat3("##1", _positionInput,-2.f,2.f);
 		ImGui::Text("rot  : "); ImGui::SameLine(); ImGui::SliderFloat4("##2", _rotationInput,0.f,3.141592f);
 		ImGui::Text("scl  : "); ImGui::SameLine(); ImGui::SliderFloat3("##3", _scaleInput,0.1f,5.f);
 	}
@@ -120,8 +120,8 @@ void GUI_BoneStructureViewer::updateToLocal()
 
 void GUI_BoneStructureViewer::updateToTarget()
 {
-	//XMFLOAT3 pos{ _positionInput[0],_positionInput[1] ,_positionInput[2] };
-	//_selectedTransform->SetLocalPosition(pos);
+	XMFLOAT3 pos{ _positionInput[0],_positionInput[1] ,_positionInput[2] };
+	_selectedTransform->SetLocalPosition(pos);
 
 	////XMFLOAT3 rotation{ XMConvertToRadians(_rotationInput[0]),XMConvertToRadians(_rotationInput[1]) ,XMConvertToRadians(_rotationInput[2]) };
 	//XMVECTOR rotation = XMVectorSet(_rotationInput[0], _rotationInput[1], _rotationInput[2], _rotationInput[3]);

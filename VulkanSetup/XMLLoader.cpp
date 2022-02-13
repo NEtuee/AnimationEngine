@@ -20,7 +20,7 @@ rapidxml::xml_document<char>* XMLLoader::loadXML_rapid(std::string path)
 {
 	std::basic_ifstream<char> xmlFile(path);
 	xmlFile.seekg(0, std::ios::end);
-	unsigned int size = xmlFile.tellg();
+	unsigned int size = static_cast<unsigned int>(xmlFile.tellg());
 	xmlFile.seekg(0);
 
 	std::vector<char> xmlData(size + 1);

@@ -38,9 +38,9 @@ void Camera::setRotation(float x, float y, float z)
 	transform->SetWorldRotation(XMFLOAT3(x, y, z));
 }
 
-TransformStructure& Camera::GetTransform()
+TransformStructure* Camera::GetTransform()
 {
-	return *transform;
+	return transform;
 }
 
 void Camera::frame(float deltaTime)
@@ -48,53 +48,56 @@ void Camera::frame(float deltaTime)
 	XMVECTOR pos = transform->getWorldPosition();
 	XMFLOAT3 realPos;
 	XMStoreFloat3(&realPos, pos);
+	
 
 	if (Input::getInstance()->isDown(VK_LEFT))
 	{
-		XMFLOAT3 right;
-		XMStoreFloat3(&right, transform->getWorldTransform().getRight());
-		right = MathEx::mul(right, 9.f * deltaTime);
-		realPos = MathEx::sub(realPos, right);
+		transform->SetWorldRotation(XMQuaternionMultiply(transform->getWorldRotation(), XMQuaternionRotationAxis(XMVectorSet(0.f, 1.f, 0.f, 0.f), -deltaTime)));
 	}
-	else if (Input::getInstance()->isDown(VK_RIGHT))
+	if (Input::getInstance()->isDown(VK_RIGHT))
 	{
-		XMFLOAT3 right;
-		XMStoreFloat3(&right, transform->getWorldTransform().getRight());
-		right = MathEx::mul(right, 9.f * deltaTime);
-		realPos = MathEx::add(realPos, right);
+		transform->SetWorldRotation(XMQuaternionMultiply(transform->getWorldRotation(), XMQuaternionRotationAxis(XMVectorSet(0.f, 1.f, 0.f, 0.f), deltaTime)));
 	}
-	else if (Input::getInstance()->isDown(VK_UP))
+	if (Input::getInstance()->isDown(VK_UP))
+	{
+		transform->SetWorldRotation(XMQuaternionMultiply(transform->getWorldRotation(), XMQuaternionRotationAxis(transform->getWorldTransform().getRight(), -deltaTime)));
+	}
+	if (Input::getInstance()->isDown(VK_DOWN))
+	{
+		transform->SetWorldRotation(XMQuaternionMultiply(transform->getWorldRotation(), XMQuaternionRotationAxis(transform->getWorldTransform().getRight(), deltaTime)));
+	}
+
+	if (Input::getInstance()->isDown('W'))
 	{
 		XMFLOAT3 forward;
 		XMStoreFloat3(&forward, transform->getWorldTransform().getForward());
 		forward = MathEx::mul(forward, 9.f * deltaTime);
 		realPos = MathEx::add(realPos, forward);
 	}
-	else if (Input::getInstance()->isDown(VK_DOWN))
+	if (Input::getInstance()->isDown('S'))
 	{
 		XMFLOAT3 forward;
 		XMStoreFloat3(&forward, transform->getWorldTransform().getForward());
 		forward = MathEx::mul(forward, 9.f * deltaTime);
 		realPos = MathEx::sub(realPos, forward);
 	}
-
-	if (Input::getInstance()->isDown('Q'))
-	{
-		XMFLOAT3 right;
-		XMStoreFloat3(&right, transform->getWorldTransform().getUp());
-		right = MathEx::mul(right, 9.f * deltaTime);
-		realPos = MathEx::add(realPos, right);
-	}
 	if (Input::getInstance()->isDown('A'))
 	{
 		XMFLOAT3 right;
-		XMStoreFloat3(&right, transform->getWorldTransform().getUp());
+		XMStoreFloat3(&right, transform->getWorldTransform().getRight());
+		right = MathEx::mul(right, -9.f * deltaTime);
+		realPos = MathEx::add(realPos, right);
+	}
+	if (Input::getInstance()->isDown('D'))
+	{
+		XMFLOAT3 right;
+		XMStoreFloat3(&right, transform->getWorldTransform().getRight());
 		right = MathEx::mul(right, 9.f * deltaTime);
-		realPos = MathEx::sub(realPos, right);
+		realPos = MathEx::add(realPos, right);
 	}
 
+
 	transform->SetWorldPosition(realPos);
-	transform->SetWorldRotation(MathEx::LookAtQuaternion(transform->getWorldPosition(), XMVectorSet(0.f, realPos.y, 0.f, 0.f)));
 }
 
 void Camera::render()
@@ -105,9 +108,6 @@ void Camera::render()
 	lookAtVector = positionVector + transform->getWorldTransform().getForward();
 	upVector = transform->getWorldTransform().getUp();
 
-	
-	// 뷰 행렬 생성
-	
 	_viewMatrix = XMMatrixLookAtLH(positionVector, lookAtVector, upVector);
 }
 

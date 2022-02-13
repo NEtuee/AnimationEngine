@@ -67,9 +67,9 @@ const std::vector<AnimationStateBase*>& AnimationSourceLayer::getStates()
 	return _stateMachine->getStates();
 }
 
-Transform AnimationSourceLayer::getCurrentPose(TransformStructure* structure, int& outIndex)
+Transform AnimationSourceLayer::getCurrentPose(TransformStructure* structure, size_t& outIndex, bool masking)
 {
-	Transform pose = _stateMachine->getCurrentPose(structure, outIndex);
-	updateWorldCache(pose, structure);
-	return pose;
+	//Transform pose = _stateMachine->getCurrentPose(structure, outIndex);
+	//updateWorldCache(pose, structure);
+	return _stateMachine->getCurrentPose(structure, outIndex);;
 }

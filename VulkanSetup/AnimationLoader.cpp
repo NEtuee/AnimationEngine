@@ -10,69 +10,135 @@
 
 void AnimationLoader::optimization(AnimationDataRow& data)
 {
-	auto& bones = data._bones;
-	int prevCount = 0;
-	int currCount = 0;
-	for (auto iterator = bones.begin(); iterator != bones.end(); ++iterator)
+	auto& bones = data._hashBones.getTable();
+	size_t prevCount = 0;
+	size_t currCount = 0;
+
+	for (int i = 0; i < bones.size(); ++i)
 	{
-		int compareTarget = 0;
-		auto& frames = (*iterator).second._frames;
-		prevCount += frames.size();
-		for (size_t i = 1; i < frames.size() - 1;)
+		for (int j = 0; j < bones[i].size(); ++j)
 		{
-
-			if (frames[i].similar(frames[i - 1], 0.00001f) &&
-				frames[i].similar(frames[i + 1], 0.00001f))
+			int compareTarget = 0;
+			auto& frames = bones[i][j]._data._frames;
+			prevCount += frames.size();
+			for (size_t i = 1; i < frames.size() - 1;)
 			{
-				frames.erase(frames.begin() + i);
-			}
-			else
-			{
-				++i;
-			}
-		}
 
-
-	}
-
-
-	for (auto iterator = bones.begin(); iterator != bones.end(); ++iterator)
-	{
-		int rootIndex = 0;
-		auto& frames = (*iterator).second._frames;
-		for (size_t i = 2; i < frames.size() - 1; ++i)
-		{
-
-			if (MathEx::linear((frames[i - 1].getPositionVector() - frames[rootIndex].getPositionVector()),
-								(frames[i].getPositionVector() - frames[i - 1].getPositionVector()), 0.000001f) == false)
-			{
-				rootIndex = i - 1;
-				continue;
-			}
-
-			if (MathEx::linear((frames[i - 1].getScaleVector() - frames[rootIndex].getScaleVector()),
-								(frames[i].getScaleVector() - frames[i - 1].getScaleVector()), 0.000001f) == false)
-			{
-				rootIndex = i - 1;
-				continue;
-			}
-
-			XMVECTOR forward = XMVectorSet(0.f,0.f,1.f,0.f);
-			if (MathEx::linear((frames[i - 1].getRotationVector() * forward - frames[rootIndex].getRotationVector() * forward),
-								(frames[i].getRotationVector() * forward - frames[i - 1].getRotationVector() * forward), 0.000001f) == false)
-			{
-				rootIndex = i - 1;
-				continue;
-			}
-			else
-			{
-				frames.erase(frames.begin() + (i - 1));
+				if (frames[i].similar(frames[i - 1], 0.00001f) &&
+					frames[i].similar(frames[i + 1], 0.00001f))
+				{
+					frames.erase(frames.begin() + i);
+				}
+				else
+				{
+					++i;
+				}
 			}
 
 		}
-
-		currCount += frames.size();
 	}
+
+	//for (auto iterator = bones.begin(); iterator != bones.end(); ++iterator)
+	//{
+	//	int compareTarget = 0;
+	//	auto& frames = (*iterator).second._frames;
+	//	prevCount += frames.size();
+	//	for (size_t i = 1; i < frames.size() - 1;)
+	//	{
+
+	//		if (frames[i].similar(frames[i - 1], 0.00001f) &&
+	//			frames[i].similar(frames[i + 1], 0.00001f))
+	//		{
+	//			frames.erase(frames.begin() + i);
+	//		}
+	//		else
+	//		{
+	//			++i;
+	//		}
+	//	}
+
+
+	//}
+
+	for (int i = 0; i < bones.size(); ++i)
+	{
+		for (int j = 0; j < bones[i].size(); ++j)
+		{
+			size_t rootIndex = 0;
+			auto& frames = bones[i][j]._data._frames;
+			for (size_t i = 2; i < frames.size() - 1; ++i)
+			{
+
+				if (MathEx::linear((frames[i - 1].getPositionVector() - frames[rootIndex].getPositionVector()),
+					(frames[i].getPositionVector() - frames[i - 1].getPositionVector()), 0.000001f) == false)
+				{
+					rootIndex = i - 1;
+					continue;
+				}
+
+				if (MathEx::linear((frames[i - 1].getScaleVector() - frames[rootIndex].getScaleVector()),
+					(frames[i].getScaleVector() - frames[i - 1].getScaleVector()), 0.000001f) == false)
+				{
+					rootIndex = i - 1;
+					continue;
+				}
+
+				XMVECTOR forward = XMVectorSet(0.f, 0.f, 1.f, 0.f);
+				if (MathEx::linear((frames[i - 1].getRotationVector() * forward - frames[rootIndex].getRotationVector() * forward),
+					(frames[i].getRotationVector() * forward - frames[i - 1].getRotationVector() * forward), 0.000001f) == false)
+				{
+					rootIndex = i - 1;
+					continue;
+				}
+				else
+				{
+					frames.erase(frames.begin() + (i - 1));
+				}
+
+			}
+
+			currCount += frames.size();
+
+		}
+	}
+
+	//for (auto iterator = bones.begin(); iterator != bones.end(); ++iterator)
+	//{
+	//	int rootIndex = 0;
+	//	auto& frames = (*iterator).second._frames;
+	//	for (size_t i = 2; i < frames.size() - 1; ++i)
+	//	{
+
+	//		if (MathEx::linear((frames[i - 1].getPositionVector() - frames[rootIndex].getPositionVector()),
+	//							(frames[i].getPositionVector() - frames[i - 1].getPositionVector()), 0.000001f) == false)
+	//		{
+	//			rootIndex = i - 1;
+	//			continue;
+	//		}
+
+	//		if (MathEx::linear((frames[i - 1].getScaleVector() - frames[rootIndex].getScaleVector()),
+	//							(frames[i].getScaleVector() - frames[i - 1].getScaleVector()), 0.000001f) == false)
+	//		{
+	//			rootIndex = i - 1;
+	//			continue;
+	//		}
+
+	//		XMVECTOR forward = XMVectorSet(0.f,0.f,1.f,0.f);
+	//		if (MathEx::linear((frames[i - 1].getRotationVector() * forward - frames[rootIndex].getRotationVector() * forward),
+	//							(frames[i].getRotationVector() * forward - frames[i - 1].getRotationVector() * forward), 0.000001f) == false)
+	//		{
+	//			rootIndex = i - 1;
+	//			continue;
+	//		}
+	//		else
+	//		{
+	//			frames.erase(frames.begin() + (i - 1));
+	//		}
+
+	//	}
+
+	//	currCount += frames.size();
+	//}
 
 	std::cout << "prev : " << prevCount << "\ncurr : " << currCount << "\n";
 }
@@ -114,7 +180,8 @@ AnimationDataRow* AnimationLoader::loadAnimation(std::string path)
 	data->_isSinglebone = xml->getProperty("SingleBoneAnimation") == "True";
 	data->_fileTag = xml->getProperty("FileTag");
 
-	data->_bones.clear();
+	//data->_bones.clear();
+	data->_hashBones.createSimpleHashtable(data->_frameCount);
 	//data->_frames.resize(data->_frameCount);
 
 	for (int i = 0; i < targetData.size(); ++i)
@@ -127,7 +194,8 @@ AnimationDataRow* AnimationLoader::loadAnimation(std::string path)
 		BoneDataRow bone;
 		bone._frames.resize(data->_frameCount);
 		bone._name = name;
-		data->_bones.emplace(std::make_pair(hashedName,bone));
+		//data->_bones.emplace(std::make_pair(hashedName,bone));
+		data->_hashBones.pushData(hashedName, bone);
 
 		for (int j = 0; j < node.size(); ++j)
 		{
@@ -142,7 +210,10 @@ AnimationDataRow* AnimationLoader::loadAnimation(std::string path)
 			frame.setScale(scale.x, scale.y, scale.z);
 			frame.setRotation(rotation.x, rotation.z, rotation.y, rotation.w);
 
-			data->_bones[hashedName]._frames[j] = frame;
+			BoneDataRow* row;
+			data->_hashBones.find(hashedName, row);
+			row->_frames[j] = frame;
+			//data->_bones[hashedName]._frames[j] = frame;
 		}
 	}
 

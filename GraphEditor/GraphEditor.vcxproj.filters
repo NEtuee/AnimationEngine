@@ -43,6 +43,9 @@
     <Filter Include="소스 파일\GUI">
       <UniqueIdentifier>{798ae97f-9113-44dc-8560-56e713cc9f7d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Spline">
+      <UniqueIdentifier>{d4756d39-56eb-4dc5-a786-94b52b887bc0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="WindowApp.h">
@@ -105,6 +108,30 @@
     <ClInclude Include="..\VulkanSetup\HalfFloat.h">
       <Filter>소스 파일\MainProject</Filter>
     </ClInclude>
+    <ClInclude Include="..\VulkanSetup\HalfQuaternion.h">
+      <Filter>소스 파일\MainProject</Filter>
+    </ClInclude>
+    <ClInclude Include="..\VulkanSetup\CompressedQuaternion.h">
+      <Filter>소스 파일\MainProject</Filter>
+    </ClInclude>
+    <ClInclude Include="..\VulkanSetup\Quantization.h">
+      <Filter>소스 파일\MainProject</Filter>
+    </ClInclude>
+    <ClInclude Include="..\VulkanSetup\CatmullRomSpline.h">
+      <Filter>소스 파일\Spline</Filter>
+    </ClInclude>
+    <ClInclude Include="..\VulkanSetup\SplineKeyFrameData.h">
+      <Filter>소스 파일\Spline</Filter>
+    </ClInclude>
+    <ClInclude Include="..\VulkanSetup\SplineKeyVariable.h">
+      <Filter>소스 파일\Spline</Filter>
+    </ClInclude>
+    <ClInclude Include="..\BinaryGenerator\FBXLoader.h">
+      <Filter>소스 파일\MainProject</Filter>
+    </ClInclude>
+    <ClInclude Include="..\VulkanSetup\BoneStructure.h">
+      <Filter>소스 파일\MainProject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -159,6 +186,30 @@
       <Filter>소스 파일\GUI</Filter>
     </ClCompile>
     <ClCompile Include="..\VulkanSetup\HalfFloat.cpp">
+      <Filter>소스 파일\MainProject</Filter>
+    </ClCompile>
+    <ClCompile Include="..\VulkanSetup\HalfQuaternion.cpp">
+      <Filter>소스 파일\MainProject</Filter>
+    </ClCompile>
+    <ClCompile Include="..\VulkanSetup\CompressedQuaternion.cpp">
+      <Filter>소스 파일\MainProject</Filter>
+    </ClCompile>
+    <ClCompile Include="..\VulkanSetup\Quantization.cpp">
+      <Filter>소스 파일\MainProject</Filter>
+    </ClCompile>
+    <ClCompile Include="..\VulkanSetup\CatmullRomSpline.cpp">
+      <Filter>소스 파일\Spline</Filter>
+    </ClCompile>
+    <ClCompile Include="..\VulkanSetup\SplineKeyFrameData.cpp">
+      <Filter>소스 파일\Spline</Filter>
+    </ClCompile>
+    <ClCompile Include="..\VulkanSetup\SplineKeyVariable.cpp">
+      <Filter>소스 파일\Spline</Filter>
+    </ClCompile>
+    <ClCompile Include="..\BinaryGenerator\FBXLoader.cpp">
+      <Filter>소스 파일\MainProject</Filter>
+    </ClCompile>
+    <ClCompile Include="..\VulkanSetup\BoneStructure.cpp">
       <Filter>소스 파일\MainProject</Filter>
     </ClCompile>
   </ItemGroup>

@@ -1,7 +1,8 @@
 ﻿#include "Timer.h"
 
 Timer::Timer()
-	:_frequency(0),_ticksPerMs(0), _startTime(0), _frameTime(0), _timeScale(1.f)
+:_frequency(0),_ticksPerMs(0),_startTime(0),_frameTime(0),_timeScale(0),_globalTimer(0)
+
 {
 }
 
@@ -23,7 +24,7 @@ bool Timer::initialize()
 		return false;
 	}
 
-	_ticksPerMs = (double)(_frequency);
+	_ticksPerMs = (float)(_frequency);
 
 	QueryPerformanceCounter((LARGE_INTEGER*)&_startTime);
 
@@ -37,29 +38,29 @@ void Timer::frame()
 	INT64 currentTime = 0;
 	QueryPerformanceCounter((LARGE_INTEGER*)&currentTime);
 
-	double timeDifference = (double)(currentTime - _startTime);
+	float timeDifference = (float)(currentTime - _startTime);
 	_frameTime = timeDifference / _ticksPerMs;
 	_startTime = currentTime;
 
 	_globalTimer += _frameTime;
 }
 
-double Timer::getTime()
+float Timer::getDeltaTime()
 {
 	return _frameTime * _timeScale;
 }
 
-double Timer::getGlobalTime()
+float Timer::getGlobalTime()
 {
 	return _globalTimer;
 }
 
-double Timer::getTimeScale()
+float Timer::getTimeScale()
 {
 	return _timeScale;
 }
 
-void Timer::setTimeScale(double value)
+void Timer::setTimeScale(float value)
 {
 	_timeScale = value;
 }

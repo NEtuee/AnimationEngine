@@ -68,17 +68,17 @@ XMVECTOR Transform::getUp() const
 	return XMVector3Rotate(XMVectorSet(forward.x, forward.y, forward.z, 0.f), _rotation);
 }
 
-XMVECTOR Transform::getPosition() const
+const XMVECTOR& Transform::getPosition() const
 {
 	return _position;
 }
 
-XMVECTOR Transform::getScale() const
+const XMVECTOR& Transform::getScale() const
 {
 	return _scale;
 }
 
-XMVECTOR Transform::getRotation() const
+const XMVECTOR& Transform::getRotation() const
 {
 	return _rotation;
 }
@@ -119,7 +119,7 @@ Transform Transform::lerp(const Transform& target, float factor) const
 	return lerped;
 }
 
-Transform Transform::barycentric(const Transform& t2, const Transform& t3, float f, float g)
+Transform Transform::barycentric(const Transform& t2, const Transform& t3, float f, float g) const
 {
 	Transform bc;
 	bc.setTransform(XMVectorBaryCentric(t3._position, _position, t2._position, f, g),
@@ -139,7 +139,7 @@ Transform Transform::add(const Transform& target) const
 	return added;
 }
 
-Transform Transform::sub(const Transform& target)
+Transform Transform::sub(const Transform& target) const
 {
 	Transform subtracted;
 	subtracted.setTransform(XMVectorSubtract(_position, target._position),
@@ -149,7 +149,7 @@ Transform Transform::sub(const Transform& target)
 	return subtracted;
 }
 
-Transform Transform::worldToLocal(const Transform& parent)
+Transform Transform::worldToLocal(const Transform& parent) const
 {
 	Transform inverseParent = parent.inverse();
 	Transform result;
@@ -163,7 +163,7 @@ Transform Transform::worldToLocal(const Transform& parent)
 	return result;
 }
 
-Transform Transform::localToWorld(const Transform& parent)
+Transform Transform::localToWorld(const Transform& parent) const
 {
 	Transform result;
 	result.setRotation(XMQuaternionMultiply(_rotation, parent.getRotation()));

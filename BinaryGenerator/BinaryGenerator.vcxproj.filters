@@ -81,6 +81,24 @@
     <ClCompile Include="..\VulkanSetup\BoneStructure.cpp">
       <Filter>소스 파일\MainProject</Filter>
     </ClCompile>
+    <ClCompile Include="..\VulkanSetup\SkeletonLoader.cpp">
+      <Filter>소스 파일\MainProject</Filter>
+    </ClCompile>
+    <ClCompile Include="..\VulkanSetup\HalfQuaternion.cpp">
+      <Filter>소스 파일\MainProject</Filter>
+    </ClCompile>
+    <ClCompile Include="..\VulkanSetup\CompressedQuaternion.cpp">
+      <Filter>소스 파일\MainProject</Filter>
+    </ClCompile>
+    <ClCompile Include="..\VulkanSetup\Quantization.cpp">
+      <Filter>소스 파일\MainProject</Filter>
+    </ClCompile>
+    <ClCompile Include="..\VulkanSetup\CatmullRomSpline.cpp">
+      <Filter>소스 파일\MainProject</Filter>
+    </ClCompile>
+    <ClCompile Include="..\VulkanSetup\SplineKeyFrameData.cpp">
+      <Filter>소스 파일\MainProject</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\VulkanSetup\AnimationDataRow.h">
@@ -126,6 +144,24 @@
       <Filter>소스 파일\FBXLoader</Filter>
     </ClInclude>
     <ClInclude Include="..\VulkanSetup\BoneStructure.h">
+      <Filter>소스 파일\MainProject</Filter>
+    </ClInclude>
+    <ClInclude Include="..\VulkanSetup\SkeletonLoader.h">
+      <Filter>소스 파일\MainProject</Filter>
+    </ClInclude>
+    <ClInclude Include="..\VulkanSetup\HalfQuaternion.h">
+      <Filter>소스 파일\MainProject</Filter>
+    </ClInclude>
+    <ClInclude Include="..\VulkanSetup\CompressedQuaternion.h">
+      <Filter>소스 파일\MainProject</Filter>
+    </ClInclude>
+    <ClInclude Include="..\VulkanSetup\Quantization.h">
+      <Filter>소스 파일\MainProject</Filter>
+    </ClInclude>
+    <ClInclude Include="..\VulkanSetup\CatmullRomSpline.h">
+      <Filter>소스 파일\MainProject</Filter>
+    </ClInclude>
+    <ClInclude Include="..\VulkanSetup\SplineKeyFrameData.h">
       <Filter>소스 파일\MainProject</Filter>
     </ClInclude>
   </ItemGroup>

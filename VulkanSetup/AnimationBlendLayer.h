@@ -12,11 +12,8 @@ public:
 								AnimationBlendLayer();
 
 	virtual void				destroyAnimationLayerBase() override;
-
-	virtual void				initialize() override;
-
-	virtual void				frame(float deltaTime) override;
-	virtual void				afterLoop(TransformStructure* structure) override;
+	virtual void				initialize()				override;
+	virtual void				frame(float deltaTime)		override;
 
 	void						setWeight(float value);
 	float						getWeight();
@@ -25,8 +22,7 @@ public:
 	void						setMaskBone(TransformStructure* bone);
 	size_t						getMaskBoneHashedName();
 	TransformStructure*			getMaskBone();
-	void						setMasking(bool value);
-	bool						IsMasking();
+	bool						isMaskBone(TransformStructure* bone);
 
 	void						setMaskDepth(float depth);
 	float						getMaskDepth();
@@ -53,7 +49,7 @@ public:
 	AnimationDataPack*			getAdditiveBasePose();
 	Transform					getAdditiveBasePose(size_t hashedName);
 
-	virtual Transform			getCurrentPose(TransformStructure* structure, int& outIndex) override;
+	virtual Transform			getCurrentPose(TransformStructure* structure, size_t& outIndex, bool masking = false) override;
 private:
 	TransformStructure*			_partialMaskRoot;
 	TransformStructure*			_rotationRoot;
@@ -67,8 +63,6 @@ private:
 	float						_weight;
 	float						_maskDepth;
 	float						_partialSmoothCount;
-	bool						_masking;
-	bool						_inverseMasking;
 	bool						_additive;
 };
 

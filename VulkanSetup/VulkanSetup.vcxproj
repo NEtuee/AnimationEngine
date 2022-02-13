@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AlignedAllocationPolicy.h" />
+    <ClInclude Include="AnalyticTwoBoneIKSolver.h" />
     <ClInclude Include="AnimationBlendLayer.h" />
     <ClInclude Include="AnimationDataPack.h" />
     <ClInclude Include="AnimationDataRow.h" />
@@ -42,10 +43,14 @@
     <ClInclude Include="Bone.h" />
     <ClInclude Include="BoneStructure.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="CatmullRomSpline.h" />
+    <ClInclude Include="CCDIKSolver.h" />
     <ClInclude Include="CharacterSet.h" />
     <ClInclude Include="CharacterSetLoader.h" />
+    <ClInclude Include="CompressedQuaternion.h" />
     <ClInclude Include="D3Device.h" />
     <ClInclude Include="DirectXDefine.h" />
+    <ClInclude Include="FABRIKSolver.h" />
     <ClInclude Include="FrameData.h" />
     <ClInclude Include="Graphics.h" />
     <ClInclude Include="GroundScene.h" />
@@ -56,6 +61,9 @@
     <ClInclude Include="GUI_CurveEditorTest.h" />
     <ClInclude Include="GUI_FPSAndCPUCounter.h" />
     <ClInclude Include="HalfFloat.h" />
+    <ClInclude Include="HalfQuaternion.h" />
+    <ClInclude Include="IKChain.h" />
+    <ClInclude Include="IKSolver.h" />
     <ClInclude Include="IMGUI\imconfig.h" />
     <ClInclude Include="IMGUI\imgui.h" />
     <ClInclude Include="IMGUI\imgui_impl_dx11.h" />
@@ -65,6 +73,7 @@
     <ClInclude Include="IMGUI\stb_truetype.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="LayerGhostModelScene.h" />
+    <ClInclude Include="LookAtIKSolver.h" />
     <ClInclude Include="MathEx.h" />
     <ClInclude Include="MCube.h" />
     <ClInclude Include="Model.h" />
@@ -72,6 +81,7 @@
     <ClInclude Include="MQuad.h" />
     <ClInclude Include="MRectangle.h" />
     <ClInclude Include="MTriangle.h" />
+    <ClInclude Include="Quantization.h" />
     <ClInclude Include="RapidXML\rapidxml.hpp" />
     <ClInclude Include="RapidXML\rapidxml_iterators.hpp" />
     <ClInclude Include="RapidXML\rapidxml_print.hpp" />
@@ -81,7 +91,10 @@
     <ClInclude Include="Serialize.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="SimpleColor.h" />
+    <ClInclude Include="SimpleHashtable.h" />
     <ClInclude Include="SkeletonLoader.h" />
+    <ClInclude Include="SplineKeyFrameData.h" />
+    <ClInclude Include="SplineKeyVariable.h" />
     <ClInclude Include="StringEx.h" />
     <ClInclude Include="ThreadPool.h" />
     <ClInclude Include="Timer.h" />
@@ -94,6 +107,7 @@
     <ClInclude Include="XMLLoader.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AnalyticTwoBoneIKSolver.cpp" />
     <ClCompile Include="AnimationBlendLayer.cpp" />
     <ClCompile Include="AnimationDataPack.cpp" />
     <ClCompile Include="AnimationDataRow.cpp" />
@@ -116,9 +130,13 @@
     <ClCompile Include="Bone.cpp" />
     <ClCompile Include="BoneStructure.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="CatmullRomSpline.cpp" />
+    <ClCompile Include="CCDIKSolver.cpp" />
     <ClCompile Include="CharacterSet.cpp" />
     <ClCompile Include="CharacterSetLoader.cpp" />
+    <ClCompile Include="CompressedQuaternion.cpp" />
     <ClCompile Include="D3Device.cpp" />
+    <ClCompile Include="FABRIKSolver.cpp" />
     <ClCompile Include="FrameData.cpp" />
     <ClCompile Include="Graphics.cpp" />
     <ClCompile Include="GroundScene.cpp" />
@@ -129,11 +147,15 @@
     <ClCompile Include="GUI_CurveEditorTest.cpp" />
     <ClCompile Include="GUI_FPSAndCPUCounter.cpp" />
     <ClCompile Include="HalfFloat.cpp" />
+    <ClCompile Include="HalfQuaternion.cpp" />
+    <ClCompile Include="IKChain.cpp" />
+    <ClCompile Include="IKSolver.cpp" />
     <ClCompile Include="IMGUI\imgui.cpp" />
     <ClCompile Include="IMGUI\imgui_draw.cpp" />
     <ClCompile Include="IMGUI\imgui_impl_dx11.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="LayerGhostModelScene.cpp" />
+    <ClCompile Include="LookAtIKSolver.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MathEx.cpp" />
     <ClCompile Include="MCube.cpp" />
@@ -142,11 +164,14 @@
     <ClCompile Include="MQuad.cpp" />
     <ClCompile Include="MRectangle.cpp" />
     <ClCompile Include="MTriangle.cpp" />
+    <ClCompile Include="Quantization.cpp" />
     <ClCompile Include="ResourceLoader.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Serialize.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="SkeletonLoader.cpp" />
+    <ClCompile Include="SplineKeyFrameData.cpp" />
+    <ClCompile Include="SplineKeyVariable.cpp" />
     <ClCompile Include="StringEx.cpp" />
     <ClCompile Include="ThreadPool.cpp" />
     <ClCompile Include="Timer.cpp" />
@@ -217,22 +242,22 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>&amp;(SolutionDir)VulkanSetup\RapidXML;&amp;(SolutionDir)VulkanSetup\IMGUI</IncludePath>
+    <IncludePath>$(SolutionDir)VulkanSetup\RapidXML;$(SolutionDir)VulkanSetup\IMGUI</IncludePath>
     <ReferencePath>$(ReferencePath)</ReferencePath>
     <ExternalIncludePath>$(ExternalIncludePath)</ExternalIncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>&amp;(SolutionDir)VulkanSetup\RapidXML;&amp;(SolutionDir)VulkanSetup\IMGUI</IncludePath>
+    <IncludePath>$(SolutionDir)VulkanSetup\RapidXML;$(SolutionDir)VulkanSetup\IMGUI</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>&amp;(SolutionDir)VulkanSetup\RapidXML;&amp;(SolutionDir)VulkanSetup\IMGUI</IncludePath>
+    <IncludePath>$(SolutionDir)VulkanSetup\RapidXML;$(SolutionDir)VulkanSetup\IMGUI</IncludePath>
     <ExternalIncludePath>$(ExternalIncludePath)</ExternalIncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>&amp;(SolutionDir)VulkanSetup\RapidXML;&amp;(SolutionDir)VulkanSetup\IMGUI</IncludePath>
+    <IncludePath>$(SolutionDir)VulkanSetup\RapidXML;$(SolutionDir)VulkanSetup\IMGUI</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 #include <unordered_map>
+#include <map>
 
 
 enum class StateVariableTypeEnum;
@@ -28,21 +29,21 @@ public:
 
 	void							setRootMotion(bool enable, TransformStructure* rootBone);
 
-	AnimationLayerBase* getLayer() const;
-	void setResultLayer(AnimationLayerBase* layer);
-	const std::unordered_map<std::string, AnimationStateVariable*>& getVariables() const;
+	AnimationLayerBase*				getLayer() const;
+	void							setResultLayer(AnimationLayerBase* layer);
+	const std::map<std::string, AnimationStateVariable*>& getVariables() const;
 	AnimationStateVariable*			getVariable(std::string name);
 private:
-	void							playAnimation(TransformStructure* root);
+	void							playAnimation();
 	void							updateRootMotion();
 private:
-	AnimationLayerBase* _resultLayer;
-	std::unordered_map<std::string, AnimationStateVariable*>	_variables;
+	AnimationLayerBase*								_resultLayer;
+	std::map<std::string, AnimationStateVariable*>	_variables;
 
-	BoneStructure*												_targetBone;
+	BoneStructure*									_targetBone;
 
-	Transform*													_prevRoot;
-	TransformStructure*											_rootBone;
-	bool														_rootMotion;
+	Transform*										_prevRoot;
+	TransformStructure*								_rootBone;
+	bool											_rootMotion;
 };
 

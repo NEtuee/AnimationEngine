@@ -52,15 +52,6 @@
     <Filter Include="소스 파일\System\Rendering\Graphics">
       <UniqueIdentifier>{ace5f145-80bb-490b-9aaa-e5074bdb30ff}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\System\Rendering\GUI">
-      <UniqueIdentifier>{b859db75-7aec-408b-9c8e-7eb99a1e3a99}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\System\Rendering\GUI\FPSAndCPU">
-      <UniqueIdentifier>{df584717-8d88-4665-af41-09a906d1a170}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\System\Rendering\GUI\BoneStructureViewer">
-      <UniqueIdentifier>{277b64d1-a9ba-4a9b-bb4a-334dd2c024c8}</UniqueIdentifier>
-    </Filter>
     <Filter Include="소스 파일\System\Rendering\Camera">
       <UniqueIdentifier>{e7f0b21a-bd9d-44e4-8da4-08a85fe3d552}</UniqueIdentifier>
     </Filter>
@@ -148,9 +139,6 @@
     <Filter Include="RapidXML">
       <UniqueIdentifier>{d8b76c69-c53a-482c-adda-36d419e3bf22}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\Animation\CharacterSet">
-      <UniqueIdentifier>{1d1d4351-3c44-4e1b-a0cb-72b4ebd2e624}</UniqueIdentifier>
-    </Filter>
     <Filter Include="소스 파일\Animation\BlendTree">
       <UniqueIdentifier>{d9a0e12a-4bad-4e6b-a6dc-c5099d0daeae}</UniqueIdentifier>
     </Filter>
@@ -174,9 +162,6 @@
     </Filter>
     <Filter Include="소스 파일\Animation\AnimationLayer\AnimationBlendLayer">
       <UniqueIdentifier>{b748e7df-e394-4b13-83ef-86fa18a8de81}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\System\Rendering\GUI\BlendTreeViewer">
-      <UniqueIdentifier>{06ec0c26-a077-4fa6-89c0-91a31ca4d6b1}</UniqueIdentifier>
     </Filter>
     <Filter Include="소스 파일\Utility\MathEx">
       <UniqueIdentifier>{4e23f4a2-66b3-4057-bd98-e214b8311d7e}</UniqueIdentifier>
@@ -205,14 +190,62 @@
     <Filter Include="소스 파일\System\FileIO\ResourceLoader">
       <UniqueIdentifier>{a354aeaa-7651-401f-a9eb-175ebed966b4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\System\Rendering\GUI\CurveEditorTest">
-      <UniqueIdentifier>{ac3b6bcc-8fe1-4ab3-bdcb-298ab3c6ff02}</UniqueIdentifier>
-    </Filter>
     <Filter Include="소스 파일\Algorithm\HalfFloat">
       <UniqueIdentifier>{b7e21a07-9cb0-4101-af51-1ab3dcc5e6e9}</UniqueIdentifier>
     </Filter>
     <Filter Include="소스 파일\Scene\ModelScene\Ghost">
       <UniqueIdentifier>{2ea74a35-03e2-458a-ab63-27b7eb663496}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Algorithm\HalfFloat\HalfQuaternion">
+      <UniqueIdentifier>{38fdc5f7-f086-4af9-b77a-66c9c70d534d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Algorithm\Quantization">
+      <UniqueIdentifier>{9a72d2d6-b8bb-4dec-a089-04feac29a897}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Algorithm\CompressedQuaternion">
+      <UniqueIdentifier>{6a1e5d44-ef8c-44d1-afcc-db0e734836ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Algorithm\Spline">
+      <UniqueIdentifier>{65827b6a-1810-496b-82f6-bdd1d94a996a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Animation\IKChain">
+      <UniqueIdentifier>{83017a2e-3c86-4d49-b4b3-6672e5f458d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Animation\IKSolver">
+      <UniqueIdentifier>{f65b27d2-8bbd-4f64-a15e-bdc86a7fdab0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Animation\IKSolver\FABRIK">
+      <UniqueIdentifier>{1a02e469-9f32-4860-b219-068da6bdca82}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\CharacterSet">
+      <UniqueIdentifier>{1d1d4351-3c44-4e1b-a0cb-72b4ebd2e624}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Animation\IKSolver\CCDIK">
+      <UniqueIdentifier>{f9e68f69-75db-45b2-b2e7-e3a336494c7b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Animation\IKSolver\LookAtIK">
+      <UniqueIdentifier>{af9157af-a33a-4746-b3fb-4ae1d514134f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Algorithm\SimpleHashtable">
+      <UniqueIdentifier>{a3aac8c3-2cfa-4710-a4c5-c6bfd4880afa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Animation\IKSolver\AnalyticTwoBoneIK">
+      <UniqueIdentifier>{41a05605-dd9e-4989-9017-fb3e8f00a09e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\GUI">
+      <UniqueIdentifier>{b859db75-7aec-408b-9c8e-7eb99a1e3a99}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\GUI\FPSAndCPU">
+      <UniqueIdentifier>{df584717-8d88-4665-af41-09a906d1a170}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\GUI\BoneStructureViewer">
+      <UniqueIdentifier>{277b64d1-a9ba-4a9b-bb4a-334dd2c024c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\GUI\BlendTreeViewer">
+      <UniqueIdentifier>{06ec0c26-a077-4fa6-89c0-91a31ca4d6b1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\GUI\CurveEditorTest">
+      <UniqueIdentifier>{ac3b6bcc-8fe1-4ab3-bdcb-298ab3c6ff02}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -262,7 +295,7 @@
       <Filter>IMGUI</Filter>
     </ClInclude>
     <ClInclude Include="GUIBase.h">
-      <Filter>소스 파일\System\Rendering\GUI</Filter>
+      <Filter>소스 파일\GUI</Filter>
     </ClInclude>
     <ClInclude Include="MTriangle.h">
       <Filter>소스 파일\System\Rendering\Model\Triangle</Filter>
@@ -292,10 +325,10 @@
       <Filter>소스 파일\Scene\ModelScene</Filter>
     </ClInclude>
     <ClInclude Include="GUI_FPSAndCPUCounter.h">
-      <Filter>소스 파일\System\Rendering\GUI\FPSAndCPU</Filter>
+      <Filter>소스 파일\GUI\FPSAndCPU</Filter>
     </ClInclude>
     <ClInclude Include="GUI_BoneStructureViewer.h">
-      <Filter>소스 파일\System\Rendering\GUI\BoneStructureViewer</Filter>
+      <Filter>소스 파일\GUI\BoneStructureViewer</Filter>
     </ClInclude>
     <ClInclude Include="GUIScene.h">
       <Filter>소스 파일\Scene\GUIScene</Filter>
@@ -382,7 +415,7 @@
       <Filter>RapidXML</Filter>
     </ClInclude>
     <ClInclude Include="CharacterSet.h">
-      <Filter>소스 파일\Animation\CharacterSet</Filter>
+      <Filter>소스 파일\CharacterSet</Filter>
     </ClInclude>
     <ClInclude Include="BlendTree.h">
       <Filter>소스 파일\Animation\BlendTree</Filter>
@@ -409,7 +442,7 @@
       <Filter>소스 파일\Animation\AnimationLayer\AnimationBlendLayer</Filter>
     </ClInclude>
     <ClInclude Include="GUI_BlendTreeViewer.h">
-      <Filter>소스 파일\System\Rendering\GUI\BlendTreeViewer</Filter>
+      <Filter>소스 파일\GUI\BlendTreeViewer</Filter>
     </ClInclude>
     <ClInclude Include="MathEx.h">
       <Filter>소스 파일\Utility\MathEx</Filter>
@@ -427,13 +460,52 @@
       <Filter>소스 파일\Algorithm\Triangulation</Filter>
     </ClInclude>
     <ClInclude Include="GUI_CurveEditorTest.h">
-      <Filter>소스 파일\System\Rendering\GUI\CurveEditorTest</Filter>
+      <Filter>소스 파일\GUI\CurveEditorTest</Filter>
     </ClInclude>
     <ClInclude Include="HalfFloat.h">
       <Filter>소스 파일\Algorithm\HalfFloat</Filter>
     </ClInclude>
     <ClInclude Include="LayerGhostModelScene.h">
       <Filter>소스 파일\Scene\ModelScene\Ghost</Filter>
+    </ClInclude>
+    <ClInclude Include="HalfQuaternion.h">
+      <Filter>소스 파일\Algorithm\HalfFloat\HalfQuaternion</Filter>
+    </ClInclude>
+    <ClInclude Include="CompressedQuaternion.h">
+      <Filter>소스 파일\Algorithm\CompressedQuaternion</Filter>
+    </ClInclude>
+    <ClInclude Include="Quantization.h">
+      <Filter>소스 파일\Algorithm\Quantization</Filter>
+    </ClInclude>
+    <ClInclude Include="CatmullRomSpline.h">
+      <Filter>소스 파일\Algorithm\Spline</Filter>
+    </ClInclude>
+    <ClInclude Include="SplineKeyVariable.h">
+      <Filter>소스 파일\Algorithm\Spline</Filter>
+    </ClInclude>
+    <ClInclude Include="SplineKeyFrameData.h">
+      <Filter>소스 파일\Algorithm\Spline</Filter>
+    </ClInclude>
+    <ClInclude Include="FABRIKSolver.h">
+      <Filter>소스 파일\Animation\IKSolver\FABRIK</Filter>
+    </ClInclude>
+    <ClInclude Include="IKChain.h">
+      <Filter>소스 파일\Animation\IKChain</Filter>
+    </ClInclude>
+    <ClInclude Include="IKSolver.h">
+      <Filter>소스 파일\Animation\IKSolver</Filter>
+    </ClInclude>
+    <ClInclude Include="CCDIKSolver.h">
+      <Filter>소스 파일\Animation\IKSolver\CCDIK</Filter>
+    </ClInclude>
+    <ClInclude Include="AnalyticTwoBoneIKSolver.h">
+      <Filter>소스 파일\Animation\IKSolver\AnalyticTwoBoneIK</Filter>
+    </ClInclude>
+    <ClInclude Include="LookAtIKSolver.h">
+      <Filter>소스 파일\Animation\IKSolver\LookAtIK</Filter>
+    </ClInclude>
+    <ClInclude Include="SimpleHashtable.h">
+      <Filter>소스 파일\Algorithm\SimpleHashtable</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -471,7 +543,7 @@
       <Filter>IMGUI</Filter>
     </ClCompile>
     <ClCompile Include="GUIBase.cpp">
-      <Filter>소스 파일\System\Rendering\GUI</Filter>
+      <Filter>소스 파일\GUI</Filter>
     </ClCompile>
     <ClCompile Include="MTriangle.cpp">
       <Filter>소스 파일\System\Rendering\Model\Triangle</Filter>
@@ -501,10 +573,10 @@
       <Filter>소스 파일\Scene\ModelScene</Filter>
     </ClCompile>
     <ClCompile Include="GUI_FPSAndCPUCounter.cpp">
-      <Filter>소스 파일\System\Rendering\GUI\FPSAndCPU</Filter>
+      <Filter>소스 파일\GUI\FPSAndCPU</Filter>
     </ClCompile>
     <ClCompile Include="GUI_BoneStructureViewer.cpp">
-      <Filter>소스 파일\System\Rendering\GUI\BoneStructureViewer</Filter>
+      <Filter>소스 파일\GUI\BoneStructureViewer</Filter>
     </ClCompile>
     <ClCompile Include="GUIScene.cpp">
       <Filter>소스 파일\Scene\GUIScene</Filter>
@@ -573,7 +645,7 @@
       <Filter>소스 파일\System\FileIO\XML\Loader</Filter>
     </ClCompile>
     <ClCompile Include="CharacterSet.cpp">
-      <Filter>소스 파일\Animation\CharacterSet</Filter>
+      <Filter>소스 파일\CharacterSet</Filter>
     </ClCompile>
     <ClCompile Include="BlendTree.cpp">
       <Filter>소스 파일\Animation\BlendTree</Filter>
@@ -600,7 +672,7 @@
       <Filter>소스 파일\Animation\AnimationLayer\AnimationBlendLayer</Filter>
     </ClCompile>
     <ClCompile Include="GUI_BlendTreeViewer.cpp">
-      <Filter>소스 파일\System\Rendering\GUI\BlendTreeViewer</Filter>
+      <Filter>소스 파일\GUI\BlendTreeViewer</Filter>
     </ClCompile>
     <ClCompile Include="MathEx.cpp">
       <Filter>소스 파일\Utility\MathEx</Filter>
@@ -618,13 +690,49 @@
       <Filter>소스 파일\Algorithm\Triangulation</Filter>
     </ClCompile>
     <ClCompile Include="GUI_CurveEditorTest.cpp">
-      <Filter>소스 파일\System\Rendering\GUI\CurveEditorTest</Filter>
+      <Filter>소스 파일\GUI\CurveEditorTest</Filter>
     </ClCompile>
     <ClCompile Include="HalfFloat.cpp">
       <Filter>소스 파일\Algorithm\HalfFloat</Filter>
     </ClCompile>
     <ClCompile Include="LayerGhostModelScene.cpp">
       <Filter>소스 파일\Scene\ModelScene\Ghost</Filter>
+    </ClCompile>
+    <ClCompile Include="HalfQuaternion.cpp">
+      <Filter>소스 파일\Algorithm\HalfFloat\HalfQuaternion</Filter>
+    </ClCompile>
+    <ClCompile Include="CompressedQuaternion.cpp">
+      <Filter>소스 파일\Algorithm\CompressedQuaternion</Filter>
+    </ClCompile>
+    <ClCompile Include="Quantization.cpp">
+      <Filter>소스 파일\Algorithm\Quantization</Filter>
+    </ClCompile>
+    <ClCompile Include="SplineKeyVariable.cpp">
+      <Filter>소스 파일\Algorithm\Spline</Filter>
+    </ClCompile>
+    <ClCompile Include="CatmullRomSpline.cpp">
+      <Filter>소스 파일\Algorithm\Spline</Filter>
+    </ClCompile>
+    <ClCompile Include="SplineKeyFrameData.cpp">
+      <Filter>소스 파일\Algorithm\Spline</Filter>
+    </ClCompile>
+    <ClCompile Include="FABRIKSolver.cpp">
+      <Filter>소스 파일\Animation\IKSolver\FABRIK</Filter>
+    </ClCompile>
+    <ClCompile Include="IKChain.cpp">
+      <Filter>소스 파일\Animation\IKChain</Filter>
+    </ClCompile>
+    <ClCompile Include="IKSolver.cpp">
+      <Filter>소스 파일\Animation\IKSolver</Filter>
+    </ClCompile>
+    <ClCompile Include="CCDIKSolver.cpp">
+      <Filter>소스 파일\Animation\IKSolver\CCDIK</Filter>
+    </ClCompile>
+    <ClCompile Include="AnalyticTwoBoneIKSolver.cpp">
+      <Filter>소스 파일\Animation\IKSolver\AnalyticTwoBoneIK</Filter>
+    </ClCompile>
+    <ClCompile Include="LookAtIKSolver.cpp">
+      <Filter>소스 파일\Animation\IKSolver\LookAtIK</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

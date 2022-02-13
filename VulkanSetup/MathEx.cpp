@@ -5,6 +5,11 @@ namespace MathEx
 {
 	float abs(float x)
 	{
+		return x < 0.f ? -x : x;
+	}
+
+	int absi(int x)
+	{
 		return x < 0 ? -x : x;
 	}
 
@@ -30,7 +35,9 @@ namespace MathEx
 			return true;
 		}
 
-		float angle = XMVectorGetX(XMVector3Dot(XMVector3Normalize(one), XMVector3Normalize(two)));
+		float angle = XMVectorGetX(
+			XMVector3Dot(XMVector3Normalize(one), 
+			XMVector3Normalize(two)));
 		
 		return similar(angle, 1.f, factor);
 
@@ -42,6 +49,11 @@ namespace MathEx
 		float y = b.y - a.y;
 
 		return y / x;
+	}
+
+	float lerp(float x, float y, float w)
+	{
+		return x + (y - x) * w;
 	}
 
 
@@ -59,6 +71,21 @@ namespace MathEx
 	XMFLOAT3 add(XMFLOAT3 target, XMFLOAT3 value)
 	{
 		return XMFLOAT3(target.x + value.x, target.y + value.y, target.z + value.z);
+	}
+
+	XMFLOAT2 mul(XMFLOAT2 target, float value)
+	{
+		return XMFLOAT2(target.x * value, target.y * value);
+	}
+
+	XMFLOAT2 sub(XMFLOAT2 target, XMFLOAT2 value)
+	{
+		return XMFLOAT2(target.x - value.x, target.y - value.y);
+	}
+
+	XMFLOAT2 add(XMFLOAT2 target, XMFLOAT2 value)
+	{
+		return XMFLOAT2(target.x + value.x, target.y + value.y);
 	}
 
 	XMFLOAT4 quaternionToAxisAngle(const XMVECTOR& quaternion)
@@ -106,7 +133,7 @@ namespace MathEx
 		return XMVectorSet(float2.x, float2.y, 0.f, 0.f);
 	}
 
-	XMVECTOR LookAtQuaternion(XMVECTOR from, XMVECTOR to)
+	XMVECTOR lookAtQuaternion(XMVECTOR from, XMVECTOR to)
 	{
 		XMVECTOR forward = XMVector3Normalize(to - from);
 		XMVECTOR dot = XMVector3Dot(XMVectorSet(0.f, 0.f, 1.f, 0.f), forward);
@@ -128,28 +155,33 @@ namespace MathEx
 		return XMQuaternionRotationAxis(rotAxis, rotAngle);
 	}
 
-	XMVECTOR quaternionBarycentric(FXMVECTOR Q0, FXMVECTOR Q1, FXMVECTOR Q2, float w1, float w2)
+	XMVECTOR fromToQuaternion(XMVECTOR from, XMVECTOR to, float angleScale)
 	{
-		// Note if you choose one of the three weights to be zero, you get a blend of two
-		//  quaternions.  This does not give you slerp of those quaternions.
-		float w0 = 1.0f - w1 - w2;
-		XMVECTOR Result = XMVector4Normalize(
-			XMVectorScale(Q0, w1) +
-			XMVectorScale(Q1, w2) +
-			XMVectorScale(Q2, w0));
-		return Result;
+		XMVECTOR axis = XMVector3Normalize(XMVector3Cross(from, to));
+		float angle =	XMVectorGetX(XMVector3AngleBetweenVectors(from, to)) * angleScale;
+
+		if (XMVectorGetX(XMVector3LengthSq(axis)) == 0.f)
+			return XMVectorZero();
+
+		return XMQuaternionRotationAxis(axis, angle);
 	}
 
 	XMFLOAT3 radianToDegree(const XMFLOAT3& radian)
 	{
-		XMFLOAT3 degree = XMFLOAT3{ XMConvertToDegrees(radian.x),XMConvertToDegrees(radian.y) ,XMConvertToDegrees(radian.z) };
+		XMFLOAT3 degree = XMFLOAT3{ 
+			XMConvertToDegrees(radian.x),
+			XMConvertToDegrees(radian.y) ,
+			XMConvertToDegrees(radian.z) };
 		//degree.x += degree.x < 0.f ? 180.f : 0.f;
 		return degree;
 	}
 
 	XMFLOAT3 degreeToRadian(const XMFLOAT3& degree)
 	{
-		return XMFLOAT3{ XMConvertToRadians(degree.x),XMConvertToRadians(degree.y) ,XMConvertToRadians(degree.z) };
+		return XMFLOAT3{ 
+			XMConvertToRadians(degree.x),
+			XMConvertToRadians(degree.y) ,
+			XMConvertToRadians(degree.z) };
 	}
 
 	bool isInTriangle(XMVECTOR target, XMVECTOR a, XMVECTOR b, XMVECTOR c, float& t, float& s, float& ots)
@@ -211,7 +243,7 @@ namespace MathEx
 
 
 		result = target;
-		nearDistance = INFINITE;
+		nearDistance = FLT_MAX;
 		if (s < 0)
 		{
 			result = getPerpendicularPointOnLineSegment(a, b, target);

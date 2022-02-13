@@ -23,7 +23,7 @@ ResourceLoader* ResourceLoader::getInstance()
 
 void ResourceLoader::createResourceLoader()
 {
-	_threadPool = new ThreadPool(5);
+	_threadPool = ThreadPool::getInstance();//new ThreadPool(5);
 }
 
 void ResourceLoader::destroyResourceLoader()

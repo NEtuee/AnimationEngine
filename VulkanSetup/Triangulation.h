@@ -59,10 +59,10 @@ public:
 
 	bool		isInCircum(Triangle cur, XMFLOAT2 point);
 
-	const std::vector<XMFLOAT2>&	getPoints() { return _points; }
-	const std::vector<Triangle>&	getTriangles() { return _triangles; }
+	const std::vector<XMFLOAT2>&	getPoints()			{ return _points; }
+	const std::vector<Triangle>&	getTriangles()		{ return _triangles; }
 public:
-	std::vector<XMFLOAT2> _points;
-	std::vector<Triangle> _triangles;
+	std::vector<XMFLOAT2>			_points;
+	std::vector<Triangle>			_triangles;
 };
 

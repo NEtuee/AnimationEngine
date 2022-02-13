@@ -24,15 +24,16 @@ bool MQuad::initialize(ID3D11Device* device)
 		return false;
 	}
 
-	for (float j = 0; j < _height + 1; ++j)
+	for (int j = 0; j < _height + 1; ++j)
 	{
-		for (float i = 0; i < _width + 1; ++i)
+		for (int i = 0; i < _width + 1; ++i)
 		{
 			int current = j * (_width + 1) + i;
+
 			vertices[current].position = XMFLOAT3(
-				i * _rectSize - halfWidth,
+				static_cast<float>(i) * _rectSize - halfWidth,
 				0.f,
-				j * _rectSize - halfHeight);
+				static_cast<float>(j) * _rectSize - halfHeight);
 			vertices[current].color = XMFLOAT4(0.0f, 0.0f, 0.0f, 1.0f);
 		}
 

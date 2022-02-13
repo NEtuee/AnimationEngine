@@ -45,8 +45,8 @@ void BlendTree::frame(float deltaTime)
 	_resultLayer->frame(deltaTime);
 
 
-	playAnimation(&_targetBone->getRootBone());
-	_targetBone->getRootBone().updateWorld();
+	playAnimation();
+	
 }
 
 
@@ -94,7 +94,7 @@ void BlendTree::setResultLayer(AnimationLayerBase* layer)
 	_resultLayer = layer;
 }
 
-const std::unordered_map<std::string, AnimationStateVariable*>& BlendTree::getVariables() const
+const std::map<std::string, AnimationStateVariable*>& BlendTree::getVariables() const
 {
 	return _variables;
 }
@@ -110,20 +110,44 @@ AnimationStateVariable* BlendTree::getVariable(std::string name)
 	return nullptr;
 }
 
-void BlendTree::playAnimation(TransformStructure* root)
+void BlendTree::playAnimation()
 {
-	int outIndex;
-	Transform pose = _resultLayer->getCurrentPose(root, outIndex);
+	auto& order = _targetBone->getUpdateOrder();
+	float depth = 0.f;
+	bool masking = false;
+
+	for (int i = 0; i < order.size(); ++i)
+	{
+		TransformStructure* transform = order[i];
+		if (depth >= transform->getDepth())
+			masking = false;
+
+		size_t outIndex;
+		Transform pose = _resultLayer->getCurrentPose(transform, outIndex, masking);
+		if (outIndex != -1)
+			transform->SetLoaclTransformNoCalc(pose.getPosition(), pose.getScale(), pose.getRotation());
+		if (outIndex == -2)
+		{
+			depth = transform->getDepth();
+			masking = true;
+		}
+	}
+	
+	_targetBone->getRootBone().updateWorld();
+	/*int outIndex;
+	Transform pose = _resultLayer->getCurrentPose(root, outIndex,masking);
 	if(outIndex != -1)
 		root->SetLoaclTransformNoCalc(pose.getPosition(), pose.getScale(), pose.getRotation());
+	if (outIndex == -2)
+		masking = true;
 
 	auto& children = root->getChildren();
 	for (auto iter = children.begin(); iter != children.end(); ++iter)
 	{
-		playAnimation((*iter));
+		playAnimation((*iter), masking);
 	}
 
-	_resultLayer->afterLoop(root);
+	_resultLayer->afterLoop(root);*/
 
 
 }

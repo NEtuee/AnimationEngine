@@ -4,7 +4,7 @@
 #include "DirectXDefine.h"
 
 const bool fullScreen = false;
-const bool vsyncEnabled = true;
+const bool vsyncEnabled = false;
 const float screenDepth = 1000.f;
 const float screenNear = 0.1f;
 

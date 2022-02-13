@@ -37,9 +37,9 @@ class AnimationPlayer
 //	bool				isLoop();
 //	bool				isEnd();
 //
-//	/*Transform			getIncreasePerFrameReal(TransformStructure* structure,int& outIndex);
-//	Transform			getIncreasePerFrame(AnimationDataPack* data, float currentTime, float prevTime, TransformStructure* structure, int& outIndex);*/
-//	Transform			getcurrentPose(TransformStructure* structure,int& outIndex);
+//	/*Transform			getIncreasePerFrameReal(TransformStructure* structure,size_t& outIndex);
+//	Transform			getIncreasePerFrame(AnimationDataPack* data, float currentTime, float prevTime, TransformStructure* structure, size_t& outIndex);*/
+//	Transform			getcurrentPose(TransformStructure* structure,size_t& outIndex);
 //	std::string			getBlendTargetName();
 //	std::string			getName();
 //	//AnimationDataPack*	getAnimation()			{ return _animation; }

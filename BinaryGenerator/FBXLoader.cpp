@@ -1,4 +1,4 @@
-#include "FBXLoader.h"
+﻿#include "FBXLoader.h"
 
 #include <assert.h>
 #include <iostream>
@@ -48,13 +48,13 @@ AnimationDataRow* FBXLoader::loadAnimation(const char* path)
 			row->_isAdditive = false;
 			row->_isFacial = false;
 			row->_isSinglebone = false;
+			row->_hashBones.createSimpleHashtable(row->_boneConut);
 			
 			for (int j = 0; j < anim->mNumChannels; ++j)
 			{
 				auto bone = anim->mChannels[j];
 				BoneDataRow boneData;
 				boneData._name = bone->mNodeName.C_Str();
-				
 
 				for (int k = 0; k < bone->mNumPositionKeys; ++k)
 				{
@@ -68,6 +68,7 @@ AnimationDataRow* FBXLoader::loadAnimation(const char* path)
 					data.setPosition(translation.x, translation.y, translation.z);
 					data.setScale(scale.x, scale.y, scale.z);
 					data.setRotation(rotation.x, rotation.y, rotation.z, rotation.w);
+					data.updateVectors();
 
 					boneData._frames.push_back(data);
 
@@ -77,7 +78,8 @@ AnimationDataRow* FBXLoader::loadAnimation(const char* path)
 					}
 				}
 
-				row->_bones.emplace(hash(boneData._name), boneData);
+				row->_hashBones.pushData(hash(boneData._name), boneData);
+				//row->_bones.emplace(hash(boneData._name), boneData);
 				//std::cout << bone->mNumRotationKeys << ", " << bone->mNumPositionKeys << ", " << bone->mNumRotationKeys << "\n";
 			}
 

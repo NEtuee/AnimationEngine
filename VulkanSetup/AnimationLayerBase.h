@@ -15,12 +15,11 @@ public:
 	virtual void					initialize() = 0;
 
 	virtual void					frame(float deltaTime) = 0;
-	virtual void					afterLoop(TransformStructure* structure) {}
 
 	std::string						getName();
 
 	void							updateWorldCache(Transform local, TransformStructure* target);
-	virtual Transform				getCurrentPose(TransformStructure* structure, int& outIndex) = 0;
+	virtual Transform				getCurrentPose(TransformStructure* structure, size_t& outIndex, bool masking = false) = 0;
 	virtual Transform				getCurrentWorldPose(TransformStructure* structure, bool& find);
 
 	const std::unordered_map<size_t, Transform>& getPoseCache();

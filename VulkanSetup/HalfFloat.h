@@ -7,15 +7,19 @@ public:
 	void			setFloat(float input);
 	float			getFloat() const;
 
+	void			setReal(unsigned short real);
+	unsigned short	getReal();
+
 					HalfFloat() :_half(0) {}
 
-	HalfFloat		operator=(unsigned short& value) { _half = value; return *this; }
-	HalfFloat		operator=(HalfFloat& value) { _half = value._half; return *this; }
-	HalfFloat		operator=(float& value) { setFloat(value); return *this; }
-	bool			operator==(float& value) { return getFloat() == value; }
-	bool			operator==(HalfFloat& value) { return _half == value._half; }
+	HalfFloat		operator+=(const float& value)		{ setFloat(getFloat() + value); return *this; }
+	HalfFloat		operator=(unsigned short& value)	{ _half = value; return *this; }
+	HalfFloat		operator=(HalfFloat& value)			{ _half = value._half; return *this; }
+	HalfFloat		operator=(float& value)				{ setFloat(value); return *this; }
+	bool			operator==(float& value)			{ return getFloat() == value; }
+	bool			operator==(HalfFloat& value)		{ return _half == value._half; }
 
-	operator		float() const { return getFloat(); }
+	operator		float() const						{ return getFloat(); }
 private:
 	uint16_t		floatToHalf(unsigned int i);
 	uint32_t		halfToFloat() const;
@@ -47,12 +51,12 @@ struct HalfFloat3
 		*this = f3;
 	}
 
-	bool		operator==(HalfFloat3& value) { return _x == value._x && _y == value._y && _z == value._z; }
-	HalfFloat3	operator=(XMFLOAT3& f3) { _x = f3.x; _y = f3.y; _z = f3.z; return *this; }
-	HalfFloat3	operator=(HalfFloat3 f3) { _x = f3._x; _y = f3._y; _z = f3._z; return *this; }
+	bool		operator==(HalfFloat3& value)	{ return _x == value._x && _y == value._y && _z == value._z; }
+	HalfFloat3	operator=(XMFLOAT3& f3)			{ _x = f3.x; _y = f3.y; _z = f3.z; return *this; }
+	HalfFloat3	operator=(HalfFloat3 f3)		{ _x = f3._x; _y = f3._y; _z = f3._z; return *this; }
 
-	static		HalfFloat3 zero() { return HalfFloat3{ 0.f,0.f,0.f }; }
-	static		HalfFloat3 one() { return HalfFloat3{ 1.f,1.f,1.f }; }
+	static		HalfFloat3 zero()				{ return HalfFloat3{ 0.f,0.f,0.f }; }
+	static		HalfFloat3 one()				{ return HalfFloat3{ 1.f,1.f,1.f }; }
 
 };
 
@@ -80,11 +84,11 @@ struct HalfFloat4
 		*this = f4;
 	}
 
-	HalfFloat4			operator=(XMFLOAT4& f4) { _x = f4.x; _y = f4.y; _z = f4.z; _w = f4.w; return *this; }
-	HalfFloat4			operator=(HalfFloat4 f4) { _x = f4._x; _y = f4._y; _z = f4._z; _w = f4._w; return *this; }
-	bool				operator==(HalfFloat4& value) { return _x == value._x && _y == value._y && _z == value._z && _w == value._w; }
+	HalfFloat4			operator=(XMFLOAT4& f4)			{ _x = f4.x; _y = f4.y; _z = f4.z; _w = f4.w; return *this; }
+	HalfFloat4			operator=(HalfFloat4 f4)		{ _x = f4._x; _y = f4._y; _z = f4._z; _w = f4._w; return *this; }
+	bool				operator==(HalfFloat4& value)	{ return _x == value._x && _y == value._y && _z == value._z && _w == value._w; }
 
-	static HalfFloat4	zero() { return HalfFloat4{ 0.f,0.f,0.f,0.f }; }
-	static HalfFloat4	one() { return HalfFloat4{ 1.f,1.f,1.f,1.f }; }
-	static HalfFloat4	quaternionIdentity() { return HalfFloat4{ 0.f,0.f,0.f,1.f }; }
+	static HalfFloat4	zero()							{ return HalfFloat4{ 0.f,0.f,0.f,0.f }; }
+	static HalfFloat4	one()							{ return HalfFloat4{ 1.f,1.f,1.f,1.f }; }
+	static HalfFloat4	quaternionIdentity()			{ return HalfFloat4{ 0.f,0.f,0.f,1.f }; }
 };

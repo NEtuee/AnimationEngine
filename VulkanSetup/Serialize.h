@@ -4,6 +4,7 @@
 #include <unordered_map>
 #include <string>
 #include <cassert>
+#include "SimpleHashtable.h"
 
 class Serialization
 {
@@ -45,6 +46,28 @@ public:
 		{
 			writePair(os, (*iter));
 		}
+	}
+
+	template<class c1>
+	inline void writeUnMap(std::ostream* os, typename SimpleHashtable<c1>& target)
+	{
+		size_t size = target.dataCount();
+		write(os, &size, sizeof(size));
+
+
+		auto& table = target.getTable();
+		for (int i = 0; i < target.size(); ++i)
+		{
+			for (int j = 0; j < table[i].size(); ++j)
+			{
+				write(os, &table[i][j]._key, sizeof(size_t));
+				table[i][j]._data.serialize(this, os);
+			}
+		}
+		//for (auto iter = target.begin(); iter != target.end(); ++iter)
+		//{
+		//	writePair(os, (*iter));
+		//}
 	}
 
 	template<class c1, class c2>
@@ -101,6 +124,26 @@ public:
 			readPair<c1, c2>(is, pair);
 			target.emplace(pair);
 
+		}
+	}
+
+	template<class c1>
+	inline void readUnMap(std::istream* is, typename SimpleHashtable<c1>& target)
+	{
+		size_t size;
+		read(is, &size, sizeof(size));
+
+		target.createSimpleHashtable(size);
+		//target.clear();
+
+		for (size_t i = 0; i < size; ++i)
+		{
+			std::pair<size_t, c1> pair;
+			readPair<size_t, c1>(is, pair);
+			//target.emplace(pair);
+			if (i == 83)
+				int e = 0;
+			target.pushData(pair.first, pair.second);
 		}
 	}
 

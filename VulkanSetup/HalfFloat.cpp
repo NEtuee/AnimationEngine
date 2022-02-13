@@ -24,6 +24,16 @@ float HalfFloat::getFloat() const
 	return value.f;
 }
 
+void HalfFloat::setReal(unsigned short real)
+{
+	_half = real;
+}
+
+unsigned short HalfFloat::getReal()
+{
+	return _half;
+}
+
 uint16_t HalfFloat::floatToHalf(unsigned int i)
 {
 	int s = (i >> 16) & 0x00008000;                  
