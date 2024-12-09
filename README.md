@@ -1,4 +1,6 @@
 # AnimationEngine
+![partial](https://github.com/user-attachments/assets/6e58e37c-67df-4f97-8942-95709a2199ef)
+
 A simple animation engine that includes functions such as blend tree, state machine, blend space, etc.
 
 # License
